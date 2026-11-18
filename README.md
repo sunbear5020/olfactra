@@ -7,6 +7,7 @@ Clean-room, public-data, **MIT-licensed** fragrance intelligence by
 **FEI · HEL Lab, Gyeongsang National University**.
 
 - Web workbench (browser only, no install): <https://sunbear5020.github.io/olfactra/>
+- Workbench source in this repository: [`web/`](web/) — the same files the live site serves
 - Python engine: this repository (`deploy/olfactra/`)
 - Version: **0.1.0 (OLFACTRA Core)** · 43 molecules · 22 atlas entries · 15 accords · 8 product types
 
@@ -71,6 +72,24 @@ curl -X POST 'http://127.0.0.1:8010/api/formulate' -H 'Content-Type: application
 python -m pytest -q        # 63 tests
 ```
 
+### 웹 워크벤치 (이 저장소의 `web/`)
+
+- **라이브**: <https://sunbear5020.github.io/olfactra/>
+- **이 저장소 안의 원본**: `web/index.html` · `web/styles.css` · `web/app.js` · `web/data.js`
+  (라이브 사이트와 같은 파일입니다. `data.js`는 `tools/build_web_data.py`로 엔진 라이브러리에서
+  다시 만들 수 있습니다.)
+
+설치 없이 내 컴퓨터에서 띄우려면:
+
+```bash
+cd web
+python3 -m http.server 8000
+# 브라우저에서 http://localhost:8000 접속
+```
+
+이 저장소의 `web/`을 GitHub Pages로 공개하려면 Settings → Pages → Source를
+`Deploy from a branch`, 브랜치 `main`, 폴더 `/web`으로 지정하면 됩니다.
+
 ### 배합 계산이 하는 일 (그리고 하지 않는 일)
 
 - **부향률의 정의**: "20%"는 완성품의 20%가 향 농축액이라는 뜻입니다. 원료별
@@ -102,6 +121,15 @@ python -m pytest -q        # 63 tests
 2. **0.2** — GC-MS 피크 표 가져오기(공개 형식)·조성 매칭, 아코드 저장/버전 관리, 다국어(EN·JP) UI.
 3. **0.3** — 실험 설계 모듈(희석 계열·패널 척도), 공개 데이터셋 기반 향조 임베딩 실험, 기관용 배포 패키지.
 
+### CI (GitHub Actions)
+
+세 파이썬 버전(3.10·3.11·3.12)에서 pytest와 CLI 스모크 테스트를 돌리는 워크플로를
+`.github/ci-workflow.yml.template`로 두었습니다. 이 환경의 GitHub 연결 권한이
+`.github/workflows/` 경로 쓰기를 허용하지 않아 템플릿으로 보관합니다.
+GitHub 웹에서 이 파일을 `.github/workflows/ci.yml`로 옮기면(내용 그대로)
+Actions가 다음 푸시부터 자동으로 돕니다. 로컬에서는 `python -m pytest -q`가 같은
+검사입니다.
+
 ---
 
 ## English
@@ -125,6 +153,20 @@ python -m olfactra_core recommend --mood focus --space study --style minimal
 python -m pytest -q
 uvicorn api.server:app --port 8010
 ```
+
+### Browser workbench (`web/`)
+
+The workbench lives in this repository as well: `web/index.html`, `web/styles.css`,
+`web/app.js`, `web/data.js` are what <https://sunbear5020.github.io/olfactra/> serves.
+Run it locally:
+
+```bash
+cd web
+python3 -m http.server 8000        # → http://localhost:8000
+```
+
+To publish this copy as well, set Settings → Pages → Source to branch `main`,
+folder `/web`.
 
 ### API
 
