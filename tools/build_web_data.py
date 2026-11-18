@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Build the static workbench data file from the Python library (single source of truth).
 
-    python tools/build_web_data.py --out ../sunbear5020.github.io/olfactra/data.js
+    python tools/build_web_data.py                      # → web/data.js (this repository)
+    python tools/build_web_data.py --out ../sunbear5020.github.io/olfactra/data.js   # live site copy
 
 The generated `data.js` assigns ``window.OLFACTRA_DATA`` so the page works from
 ``file://`` as well as GitHub Pages. Molecule structures are rendered to SVG from
@@ -89,9 +90,16 @@ def build(include_svg: bool = True) -> dict:
     }
 
 
+def _default_out() -> Path:
+    """Prefer the workbench copy inside this repository, fall back to the website folder."""
+    if (ROOT / "web").is_dir():
+        return ROOT / "web" / "data.js"
+    return ROOT.parent / "sunbear5020.github.io" / "olfactra" / "data.js"
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--out", default=str(ROOT.parent / "sunbear5020.github.io" / "olfactra" / "data.js"))
+    ap.add_argument("--out", default=str(_default_out()))
     ap.add_argument("--no-svg", action="store_true", help="skip RDKit structure drawings")
     args = ap.parse_args()
 
