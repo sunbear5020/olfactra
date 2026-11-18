@@ -76,8 +76,8 @@ def _rdkit():
     return Chem, AllChem, rdDistGeom
 
 
-def _embed(smiles: str):
-    """Embed + optimise one SMILES, returning an RDKit mol with coordinates."""
+def _embed(smiles: str) -> tuple:
+    """Embed + optimise one SMILES, returning (mol, relaxed_flag)."""
     Chem, AllChem, rdDistGeom = _rdkit()
     base = Chem.MolFromSmiles(smiles)
     if base is None:
@@ -90,6 +90,7 @@ def _embed(smiles: str):
     params.pruneRmsThresh = -1.0
     params.maxIterations = 400
     status = AllChem.EmbedMolecule(mol, params)
+    relaxed_embed = False
 
     if status != 0:
         # A few strained polycyclic terpenes (e.g. α-copaene) fail the default
@@ -104,12 +105,13 @@ def _embed(smiles: str):
         status = AllChem.EmbedMolecule(mol, relaxed)
         if status != 0:
             raise EmbedError(f"3-D embedding failed for {smiles!r}")
+        relaxed_embed = True
 
     if AllChem.MMFFHasAllMoleculeParams(mol):
         AllChem.MMFFOptimizeMolecule(mol, mmffVariant="MMFF94s", maxIters=1500)
     else:  # pragma: no cover - all 43 library molecules have MMFF parameters
         AllChem.UFFOptimizeMolecule(mol, maxIters=1500)
-    return mol
+    return mol, relaxed_embed
 
 
 #: SMARTS used for the functional-group counts shown in the viewer
@@ -159,7 +161,7 @@ def build(smiles: str) -> Conformer:
     """Build a 3-D conformer with pharmacophore features for one SMILES."""
     from rdkit import Chem  # local import keeps the module importable without RDKit
 
-    mol = _embed(smiles)
+    mol, relaxed_embed = _embed(smiles)
     conf = mol.GetConformer()
 
     # heavy atoms only -------------------------------------------------------
@@ -252,8 +254,14 @@ def build(smiles: str) -> Conformer:
         })
 
     volume = sum(4.0 / 3.0 * 3.14159265 * VDW.get(at["e"], 1.7) ** 3 for at in atoms)
+    props = _props(mol)
+    if relaxed_embed:
+        # α-copaene and a few strained polycycles only embed when the chirality
+        # constraint is relaxed; the 3-D shape is plausible but its absolute
+        # stereochemistry may differ from the SMILES.  Flagged, never hidden.
+        props["relaxed_embedding"] = True
     return Conformer(smiles=smiles, atoms=atoms, bonds=bonds,
-                     features=features, volume=round(volume, 1), props=_props(mol))
+                     features=features, volume=round(volume, 1), props=props)
 
 
 def build_library(smiles_by_id: dict[str, str]) -> dict[str, dict[str, Any]]:
