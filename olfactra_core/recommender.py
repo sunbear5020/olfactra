@@ -17,6 +17,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 
 from . import molecule as mol_lib
+from . import pyrfume
 
 MOODS: dict[str, str] = {
     "calm": "차분함",
@@ -356,6 +357,11 @@ class Suggestion:
             "product_label": pt.name_ko,
             "load_hint": [pt.load_min, pt.load_max],
             "load_default": pt.load_default,
+            "evidence": pyrfume.accord_evidence(
+                self.accord.materials,
+                {mid: mol_lib.get(mid).name_ko for mid in self.accord.materials
+                 if mid in {m.id for m in mol_lib.MOLECULES}},
+            ),
         }
 
 
@@ -413,6 +419,19 @@ def _score(
         fit = sum(balance.get(note, 0) * w for note, w in SPACE_NOTES[space].items())
         score += max(0.0, fit) * 1.5
         total += 1.5
+
+    # measured pleasantness of the constituent single molecules (Pyrfume /
+    # Keller & Vosshall 2016). A small, documented prior — a blend is not the sum
+    # of its parts, so it can nudge the ranking but never decides it.
+    prior = pyrfume.prior(accord.materials)
+    if prior is not None:
+        total += pyrfume.HEDONIC_WEIGHT
+        score += prior["value"] * pyrfume.HEDONIC_WEIGHT
+        measured = len(prior["measured"])
+        reasons.append(
+            f"구성 분자 {measured}종(비중 {prior['coverage'] * 100:.0f}%)의 실측 쾌적도 "
+            f"평균 {prior['mean']:.0f}/100 — Keller & Vosshall 2016"
+        )
 
     pct = 100.0 * score / total if total else 0.0
     return min(100.0, pct), reasons

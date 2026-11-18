@@ -1,0 +1,4055 @@
+{
+ "generated": "2026-11-18",
+ "license": {
+  "dataset": "Pyrfume Data — MIT License",
+  "repository": "https://github.com/pyrfume/pyrfume-data",
+  "citation": "Hamel et al. (2024) Pyrfume: A window to collective intel of smell. Scientific Data, doi:10.1038/s41597-024-04051-z"
+ },
+ "sources": {
+  "keller_2016": {
+   "label": "Keller & Vosshall 2016",
+   "title": "Olfactory perception of chemically diverse molecules",
+   "journal": "BMC Neuroscience 17:55",
+   "doi": "10.1186/s12868-016-0287-2",
+   "measured": "쾌적도·강도·친숙도(0–100), 20개 감각 기술어",
+   "url": "https://github.com/pyrfume/pyrfume-data/tree/main/keller_2016",
+   "files": [
+    {
+     "name": "manifest.toml",
+     "bytes": 665,
+     "sha256": "a4a8404ada9ed4f7a95f833f037a2b6ccd843e526e3f7f648710b0515faed621"
+    },
+    {
+     "name": "molecules.csv",
+     "bytes": 35670,
+     "sha256": "5f862b6ea62dd3ee0a15138605ea2567d06a527263284348a5982844f9bec81f"
+    },
+    {
+     "name": "stimuli.csv",
+     "bytes": 59481,
+     "sha256": "49c1a6bfb8c1665a31e13f515add95a95291f29416be1bb0b54d3317efb6665b"
+    },
+    {
+     "name": "behavior.csv",
+     "bytes": 68163172,
+     "sha256": "ab31c17c475c8b471706822f89aaf9e148bebe5f50f33ff03ebc42b32ac94df8"
+    }
+   ]
+  },
+  "dravnieks_1985": {
+   "label": "Dravnieks 1985",
+   "title": "Atlas of Odor Character Profiles",
+   "journal": "ASTM DS61",
+   "doi": "10.1520/DS61-EB",
+   "measured": "146개 향 기술어 프로파일",
+   "url": "https://github.com/pyrfume/pyrfume-data/tree/main/dravnieks_1985",
+   "files": [
+    {
+     "name": "manifest.toml",
+     "bytes": 1011,
+     "sha256": "3e8af4c13f1637eae4adef8158023fd5b4d7e0007dded4630668a2d61870a56c"
+    },
+    {
+     "name": "molecules.csv",
+     "bytes": 10861,
+     "sha256": "25e70dd347d9b0840cd37dde2b65147aea1546c85c94d5415f0fc1b7552e8aa2"
+    },
+    {
+     "name": "stimuli.csv",
+     "bytes": 8367,
+     "sha256": "4d4953e66f7497f4d04c20e231ef283d9af1f7fd1c15f6aff59621f21db87a0d"
+    },
+    {
+     "name": "behavior_1.csv",
+     "bytes": 115455,
+     "sha256": "4598d408bab20a3e43d4ff377a63a377373e79832b02a51c0437b2c73a6a092a"
+    },
+    {
+     "name": "behavior_2.csv",
+     "bytes": 116540,
+     "sha256": "7c0bbc5b2f9587786ba0299b0f0c61ec57891f1e4d7699a773f6182b270af9f7"
+    }
+   ]
+  },
+  "mainland_2015": {
+   "label": "Mainland et al. 2015",
+   "title": "Human olfactory receptor responses to odorants",
+   "journal": "Scientific Data 2:150002",
+   "doi": "10.1038/sdata.2015.2",
+   "measured": "인간 후각수용체(OR) 반응 스크리닝",
+   "url": "https://github.com/pyrfume/pyrfume-data/tree/main/mainland_2015",
+   "files": [
+    {
+     "name": "manifest.toml",
+     "bytes": 1203,
+     "sha256": "f13f8f8da04637f44ed8f991d10a5d6bf1553380447280cb86cb4c2e9c9aa796"
+    },
+    {
+     "name": "molecules.csv",
+     "bytes": 7396,
+     "sha256": "836626566367aed7daeed264ac6d2db672f4ae88aad89c07d4f5aa4264dde9f8"
+    },
+    {
+     "name": "stimuli.csv",
+     "bytes": 3646,
+     "sha256": "81d238ff4491f5b36d01b20e30b522e96a96cab00ac9ec60c80082618b8b127c"
+    },
+    {
+     "name": "subjects.csv",
+     "bytes": 665281,
+     "sha256": "e659c40a2e72b698079f7ad14f1430ae58cbb59620ba73e2c75d331cb4814d23"
+    },
+    {
+     "name": "behavior_2.csv",
+     "bytes": 2728791,
+     "sha256": "076ffaaf00540ee5a18674e00a8854052c95bd0cd625959bfa471dec81676326"
+    }
+   ]
+  }
+ },
+ "coverage": {
+  "library": 43,
+  "keller_2016": 18,
+  "dravnieks_1985": 14,
+  "mainland_2015": 8,
+  "any": 23,
+  "unmeasured": [
+   "beta-pinene",
+   "myrcene",
+   "alpha-terpinene",
+   "sabinene",
+   "citronellol",
+   "terpinen-4-ol",
+   "bornyl acetate",
+   "beta-caryophyllene",
+   "alpha-humulene",
+   "alpha-santalol",
+   "patchoulol",
+   "cedrol",
+   "alpha-cedrene",
+   "alpha-copaene",
+   "germacrene-d",
+   "delta-cadinene",
+   "alpha-bisabolol",
+   "muscone",
+   "cis-jasmone",
+   "hinokitiol"
+  ]
+ },
+ "molecules": {
+  "alpha-pinene": {
+   "dravnieks_1985": {
+    "cid": 6654,
+    "n_stimuli": 1,
+    "n_descriptors": 146,
+    "stimuli": [
+     {
+      "stimulus": "Pinenealpha_high",
+      "concentration": "high",
+      "top": [
+       {
+        "term": "WOODY, RESINOUS",
+        "use": 55.1,
+        "applicability": 39.6
+       },
+       {
+        "term": "LIGHT",
+        "use": 32.7,
+        "applicability": 21.8
+       },
+       {
+        "term": "FRAGRANT",
+        "use": 30.8,
+        "applicability": 19.5
+       },
+       {
+        "term": "TURPENTINE, PINE OIL",
+        "use": 28.0,
+        "applicability": 20.0
+       },
+       {
+        "term": "AROMATIC",
+        "use": 21.5,
+        "applicability": 13.1
+       },
+       {
+        "term": "CEDARWOOD",
+        "use": 18.7,
+        "applicability": 13.2
+       },
+       {
+        "term": "BARK,BIRCHBARK",
+        "use": 16.8,
+        "applicability": 11.3
+       },
+       {
+        "term": "SWEET",
+        "use": 15.9,
+        "applicability": 9.3
+       }
+      ]
+     }
+    ],
+    "top": [
+     {
+      "term": "WOODY, RESINOUS",
+      "use": 55.1,
+      "term_ko": "우디·레지너스"
+     },
+     {
+      "term": "LIGHT",
+      "use": 32.7,
+      "term_ko": "가벼움"
+     },
+     {
+      "term": "FRAGRANT",
+      "use": 30.8,
+      "term_ko": "향기"
+     },
+     {
+      "term": "TURPENTINE, PINE OIL",
+      "use": 28.0,
+      "term_ko": ""
+     },
+     {
+      "term": "AROMATIC",
+      "use": 21.5,
+      "term_ko": "아로마"
+     },
+     {
+      "term": "CEDARWOOD",
+      "use": 18.7,
+      "term_ko": "시더우드"
+     },
+     {
+      "term": "BARK,BIRCHBARK",
+      "use": 16.8,
+      "term_ko": ""
+     },
+     {
+      "term": "SWEET",
+      "use": 15.9,
+      "term_ko": "단맛"
+     }
+    ]
+   }
+  },
+  "limonene": {
+   "dravnieks_1985": {
+    "cid": 22311,
+    "n_stimuli": 1,
+    "n_descriptors": 146,
+    "stimuli": [
+     {
+      "stimulus": "Limonene_high",
+      "concentration": "high",
+      "top": [
+       {
+        "term": "FRUITY,CITRUS",
+        "use": 63.7,
+        "applicability": 53.6
+       },
+       {
+        "term": "LEMON",
+        "use": 56.3,
+        "applicability": 43.6
+       },
+       {
+        "term": "FRAGRANT",
+        "use": 55.6,
+        "applicability": 40.8
+       },
+       {
+        "term": "ORANGE",
+        "use": 54.1,
+        "applicability": 43.2
+       },
+       {
+        "term": "SWEET",
+        "use": 51.1,
+        "applicability": 37.5
+       },
+       {
+        "term": "LIGHT",
+        "use": 45.9,
+        "applicability": 32.0
+       },
+       {
+        "term": "AROMATIC",
+        "use": 34.8,
+        "applicability": 25.2
+       },
+       {
+        "term": "COOL,COOLING",
+        "use": 25.9,
+        "applicability": 18.8
+       }
+      ]
+     }
+    ],
+    "top": [
+     {
+      "term": "FRUITY,CITRUS",
+      "use": 63.7,
+      "term_ko": ""
+     },
+     {
+      "term": "LEMON",
+      "use": 56.3,
+      "term_ko": "레몬"
+     },
+     {
+      "term": "FRAGRANT",
+      "use": 55.6,
+      "term_ko": "향기"
+     },
+     {
+      "term": "ORANGE",
+      "use": 54.1,
+      "term_ko": "오렌지"
+     },
+     {
+      "term": "SWEET",
+      "use": 51.1,
+      "term_ko": "단맛"
+     },
+     {
+      "term": "LIGHT",
+      "use": 45.9,
+      "term_ko": "가벼움"
+     },
+     {
+      "term": "AROMATIC",
+      "use": 34.8,
+      "term_ko": "아로마"
+     },
+     {
+      "term": "COOL,COOLING",
+      "use": 25.9,
+      "term_ko": ""
+     }
+    ]
+   }
+  },
+  "linalool": {
+   "keller_2016": {
+    "cid": 6549,
+    "stimuli": [
+     {
+      "stimulus": 841,
+      "concentration": "0.001",
+      "n_raters": 51,
+      "pleasantness": 74.6,
+      "intensity": 62.1,
+      "familiarity": 60.6,
+      "descriptors": {
+       "EDIBLE": 31.5,
+       "BAKERY": 30.8,
+       "SWEET": 37.6,
+       "FRUIT": 31.1,
+       "FISH": 21.5,
+       "GARLIC": 39.0,
+       "SPICES": 31.2,
+       "COLD": 21.1,
+       "SOUR": 31.2,
+       "BURNT": 26.0,
+       "ACID": 22.3,
+       "WARM": 27.6,
+       "MUSKY": 22.0,
+       "SWEATY": 16.0,
+       "AMMONIA/URINOUS": 26.8,
+       "DECAYED": 5.0,
+       "WOOD": 19.0,
+       "GRASS": 15.8,
+       "FLOWER": 36.7,
+       "CHEMICAL": 30.7
+      }
+     },
+     {
+      "stimulus": 842,
+      "concentration": "1e-05",
+      "n_raters": 39,
+      "pleasantness": 66.0,
+      "intensity": 32.6,
+      "familiarity": 39.9,
+      "descriptors": {
+       "EDIBLE": 31.9,
+       "BAKERY": 13.0,
+       "SWEET": 37.4,
+       "FRUIT": 26.1,
+       "GARLIC": 25.0,
+       "SPICES": 16.0,
+       "COLD": 15.9,
+       "SOUR": 19.7,
+       "BURNT": 55.0,
+       "ACID": 13.2,
+       "WARM": 33.2,
+       "MUSKY": 22.4,
+       "SWEATY": 8.0,
+       "AMMONIA/URINOUS": 4.0,
+       "DECAYED": 26.0,
+       "WOOD": 52.5,
+       "GRASS": 28.9,
+       "FLOWER": 47.5,
+       "CHEMICAL": 19.4
+      }
+     }
+    ],
+    "n_stimuli": 2,
+    "n_raters": 51,
+    "pleasantness": 70.3,
+    "intensity": 47.4,
+    "familiarity": 50.2,
+    "descriptors": {
+     "FLOWER": 42.1,
+     "BURNT": 40.5,
+     "SWEET": 37.5,
+     "WOOD": 35.8,
+     "GARLIC": 32.0,
+     "EDIBLE": 31.7,
+     "WARM": 30.4,
+     "FRUIT": 28.6,
+     "SOUR": 25.4,
+     "CHEMICAL": 25.0,
+     "SPICES": 23.6,
+     "GRASS": 22.4,
+     "MUSKY": 22.2,
+     "BAKERY": 21.9,
+     "FISH": 21.5,
+     "COLD": 18.5,
+     "ACID": 17.8,
+     "DECAYED": 15.5,
+     "AMMONIA/URINOUS": 15.4,
+     "SWEATY": 12.0
+    },
+    "top_descriptors": [
+     {
+      "term": "FLOWER",
+      "score": 42.1
+     },
+     {
+      "term": "BURNT",
+      "score": 40.5
+     },
+     {
+      "term": "SWEET",
+      "score": 37.5
+     },
+     {
+      "term": "WOOD",
+      "score": 35.8
+     },
+     {
+      "term": "GARLIC",
+      "score": 32.0
+     },
+     {
+      "term": "EDIBLE",
+      "score": 31.7
+     }
+    ]
+   },
+   "mainland_2015": {
+    "cid": 6549,
+    "n_receptors_tested": 515,
+    "receptors": [
+     {
+      "gene": "OR1C1",
+      "variants": [],
+      "secondary": true,
+      "dose_response": true,
+      "ec50_log": -6.0
+     },
+     {
+      "gene": "OR1N2",
+      "variants": [
+       "W23R/V230G/T287M",
+       "W37R/V244G/T301M"
+      ],
+      "secondary": false,
+      "dose_response": true,
+      "ec50_log": -4.0
+     },
+     {
+      "gene": "OR51E2",
+      "variants": [],
+      "secondary": true,
+      "dose_response": false,
+      "ec50_log": null
+     }
+    ],
+    "n_active": 3
+   }
+  },
+  "linalyl acetate": {
+   "keller_2016": {
+    "cid": 8294,
+    "stimuli": [
+     {
+      "stimulus": 227,
+      "concentration": "1e-05",
+      "n_raters": 20,
+      "pleasantness": 44.5,
+      "intensity": 31.5,
+      "familiarity": 38.1,
+      "descriptors": {
+       "EDIBLE": 28.0,
+       "BAKERY": 16.0,
+       "SWEET": 34.8,
+       "FISH": 47.0,
+       "GARLIC": 28.0,
+       "SPICES": 18.2,
+       "COLD": 10.3,
+       "SOUR": 43.0,
+       "BURNT": 31.7,
+       "ACID": 21.5,
+       "WARM": 21.5,
+       "MUSKY": 29.3,
+       "SWEATY": 13.0,
+       "AMMONIA/URINOUS": 41.0,
+       "DECAYED": 38.0,
+       "WOOD": 37.2,
+       "GRASS": 13.0,
+       "FLOWER": 99.0,
+       "CHEMICAL": 35.4
+      }
+     },
+     {
+      "stimulus": 228,
+      "concentration": "0.001",
+      "n_raters": 35,
+      "pleasantness": 56.9,
+      "intensity": 29.8,
+      "familiarity": 39.3,
+      "descriptors": {
+       "EDIBLE": 32.0,
+       "SWEET": 17.8,
+       "FRUIT": 22.5,
+       "FISH": 42.0,
+       "GARLIC": 47.5,
+       "SPICES": 25.2,
+       "COLD": 14.8,
+       "SOUR": 31.7,
+       "BURNT": 18.2,
+       "ACID": 22.0,
+       "WARM": 21.0,
+       "MUSKY": 20.4,
+       "SWEATY": 20.7,
+       "AMMONIA/URINOUS": 15.0,
+       "DECAYED": 13.0,
+       "WOOD": 21.8,
+       "GRASS": 30.1,
+       "FLOWER": 23.7,
+       "CHEMICAL": 32.5
+      }
+     }
+    ],
+    "n_stimuli": 2,
+    "n_raters": 35,
+    "pleasantness": 50.7,
+    "intensity": 30.6,
+    "familiarity": 38.7,
+    "descriptors": {
+     "FLOWER": 61.4,
+     "FISH": 44.5,
+     "GARLIC": 37.8,
+     "SOUR": 37.4,
+     "CHEMICAL": 34.0,
+     "EDIBLE": 30.0,
+     "WOOD": 29.5,
+     "AMMONIA/URINOUS": 28.0,
+     "SWEET": 26.3,
+     "DECAYED": 25.5,
+     "BURNT": 24.9,
+     "MUSKY": 24.9,
+     "FRUIT": 22.5,
+     "ACID": 21.8,
+     "SPICES": 21.7,
+     "GRASS": 21.6,
+     "WARM": 21.2,
+     "SWEATY": 16.9,
+     "BAKERY": 16.0,
+     "COLD": 12.6
+    },
+    "top_descriptors": [
+     {
+      "term": "FLOWER",
+      "score": 61.4
+     },
+     {
+      "term": "FISH",
+      "score": 44.5
+     },
+     {
+      "term": "GARLIC",
+      "score": 37.8
+     },
+     {
+      "term": "SOUR",
+      "score": 37.4
+     },
+     {
+      "term": "CHEMICAL",
+      "score": 34.0
+     },
+     {
+      "term": "EDIBLE",
+      "score": 30.0
+     }
+    ]
+   }
+  },
+  "geraniol": {
+   "keller_2016": {
+    "cid": 637566,
+    "stimuli": [
+     {
+      "stimulus": 85,
+      "concentration": "1e-05",
+      "n_raters": 40,
+      "pleasantness": 62.1,
+      "intensity": 42.3,
+      "familiarity": 57.0,
+      "descriptors": {
+       "EDIBLE": 28.5,
+       "BAKERY": 25.8,
+       "SWEET": 30.9,
+       "FRUIT": 39.4,
+       "GARLIC": 41.0,
+       "SPICES": 13.5,
+       "COLD": 17.2,
+       "SOUR": 31.1,
+       "BURNT": 23.3,
+       "ACID": 51.8,
+       "WARM": 36.2,
+       "MUSKY": 27.0,
+       "SWEATY": 35.5,
+       "AMMONIA/URINOUS": 35.0,
+       "DECAYED": 41.8,
+       "WOOD": 46.0,
+       "GRASS": 11.4,
+       "FLOWER": 32.3,
+       "CHEMICAL": 40.5
+      }
+     },
+     {
+      "stimulus": 86,
+      "concentration": "0.001",
+      "n_raters": 54,
+      "pleasantness": 59.2,
+      "intensity": 71.8,
+      "familiarity": 51.8,
+      "descriptors": {
+       "EDIBLE": 35.8,
+       "BAKERY": 25.2,
+       "SWEET": 31.9,
+       "FRUIT": 29.1,
+       "GARLIC": 30.2,
+       "SPICES": 28.2,
+       "COLD": 20.9,
+       "SOUR": 27.9,
+       "BURNT": 33.8,
+       "ACID": 17.8,
+       "WARM": 28.2,
+       "MUSKY": 39.0,
+       "SWEATY": 16.0,
+       "AMMONIA/URINOUS": 19.2,
+       "DECAYED": 17.8,
+       "WOOD": 36.2,
+       "GRASS": 42.2,
+       "FLOWER": 18.9,
+       "CHEMICAL": 30.9
+      }
+     }
+    ],
+    "n_stimuli": 2,
+    "n_raters": 54,
+    "pleasantness": 60.7,
+    "intensity": 57.0,
+    "familiarity": 54.4,
+    "descriptors": {
+     "WOOD": 41.1,
+     "CHEMICAL": 35.7,
+     "GARLIC": 35.6,
+     "ACID": 34.8,
+     "FRUIT": 34.2,
+     "MUSKY": 33.0,
+     "WARM": 32.2,
+     "EDIBLE": 32.1,
+     "SWEET": 31.4,
+     "DECAYED": 29.8,
+     "SOUR": 29.5,
+     "BURNT": 28.5,
+     "AMMONIA/URINOUS": 27.1,
+     "GRASS": 26.8,
+     "SWEATY": 25.8,
+     "FLOWER": 25.6,
+     "BAKERY": 25.5,
+     "SPICES": 20.9,
+     "COLD": 19.0
+    },
+    "top_descriptors": [
+     {
+      "term": "WOOD",
+      "score": 41.1
+     },
+     {
+      "term": "CHEMICAL",
+      "score": 35.7
+     },
+     {
+      "term": "GARLIC",
+      "score": 35.6
+     },
+     {
+      "term": "ACID",
+      "score": 34.8
+     },
+     {
+      "term": "FRUIT",
+      "score": 34.2
+     },
+     {
+      "term": "MUSKY",
+      "score": 33.0
+     }
+    ]
+   }
+  },
+  "citral": {
+   "dravnieks_1985": {
+    "cid": 638011,
+    "n_stimuli": 1,
+    "n_descriptors": 146,
+    "stimuli": [
+     {
+      "stimulus": "Citral_high",
+      "concentration": "high",
+      "top": [
+       {
+        "term": "LEMON",
+        "use": 80.0,
+        "applicability": 71.5
+       },
+       {
+        "term": "FRUITY,CITRUS",
+        "use": 68.7,
+        "applicability": 61.9
+       },
+       {
+        "term": "FRAGRANT",
+        "use": 62.7,
+        "applicability": 49.1
+       },
+       {
+        "term": "AROMATIC",
+        "use": 52.7,
+        "applicability": 41.0
+       },
+       {
+        "term": "SWEET",
+        "use": 49.3,
+        "applicability": 35.5
+       },
+       {
+        "term": "ORANGE",
+        "use": 36.7,
+        "applicability": 24.4
+       },
+       {
+        "term": "COOL,COOLING",
+        "use": 34.7,
+        "applicability": 24.4
+       },
+       {
+        "term": "HERBAL, GREEN,CUTGRASS",
+        "use": 32.0,
+        "applicability": 21.0
+       }
+      ]
+     }
+    ],
+    "top": [
+     {
+      "term": "LEMON",
+      "use": 80.0,
+      "term_ko": "레몬"
+     },
+     {
+      "term": "FRUITY,CITRUS",
+      "use": 68.7,
+      "term_ko": ""
+     },
+     {
+      "term": "FRAGRANT",
+      "use": 62.7,
+      "term_ko": "향기"
+     },
+     {
+      "term": "AROMATIC",
+      "use": 52.7,
+      "term_ko": "아로마"
+     },
+     {
+      "term": "SWEET",
+      "use": 49.3,
+      "term_ko": "단맛"
+     },
+     {
+      "term": "ORANGE",
+      "use": 36.7,
+      "term_ko": "오렌지"
+     },
+     {
+      "term": "COOL,COOLING",
+      "use": 34.7,
+      "term_ko": ""
+     },
+     {
+      "term": "HERBAL, GREEN,CUTGRASS",
+      "use": 32.0,
+      "term_ko": ""
+     }
+    ]
+   }
+  },
+  "alpha-terpineol": {
+   "mainland_2015": {
+    "cid": 17100,
+    "n_receptors_tested": 513,
+    "receptors": [
+     {
+      "gene": "OR1A1",
+      "variants": [
+       "R128H",
+       "V233M",
+       "P285S"
+      ],
+      "secondary": true,
+      "dose_response": false,
+      "ec50_log": null
+     },
+     {
+      "gene": "OR2W1",
+      "variants": [
+       "D296N"
+      ],
+      "secondary": true,
+      "dose_response": false,
+      "ec50_log": null
+     },
+     {
+      "gene": "OR5P3",
+      "variants": [],
+      "secondary": true,
+      "dose_response": false,
+      "ec50_log": null
+     }
+    ],
+    "n_active": 3
+   }
+  },
+  "eucalyptol": {
+   "keller_2016": {
+    "cid": 2758,
+    "stimuli": [
+     {
+      "stimulus": 537,
+      "concentration": "1e-05",
+      "n_raters": 41,
+      "pleasantness": 61.5,
+      "intensity": 45.5,
+      "familiarity": 53.5,
+      "descriptors": {
+       "EDIBLE": 36.1,
+       "BAKERY": 50.4,
+       "SWEET": 30.9,
+       "FRUIT": 22.2,
+       "GARLIC": 3.3,
+       "SPICES": 38.2,
+       "COLD": 22.7,
+       "SOUR": 62.0,
+       "BURNT": 8.5,
+       "ACID": 18.3,
+       "WARM": 21.8,
+       "MUSKY": 17.2,
+       "AMMONIA/URINOUS": 34.0,
+       "DECAYED": 73.0,
+       "WOOD": 13.0,
+       "GRASS": 46.3,
+       "FLOWER": 37.2,
+       "CHEMICAL": 32.9
+      }
+     },
+     {
+      "stimulus": 538,
+      "concentration": "0.001",
+      "n_raters": 53,
+      "pleasantness": 62.5,
+      "intensity": 70.1,
+      "familiarity": 69.7,
+      "descriptors": {
+       "EDIBLE": 26.3,
+       "BAKERY": 24.0,
+       "SWEET": 31.6,
+       "FRUIT": 15.1,
+       "FISH": 1.0,
+       "GARLIC": 13.0,
+       "SPICES": 16.6,
+       "COLD": 35.8,
+       "SOUR": 26.8,
+       "BURNT": 18.5,
+       "ACID": 22.4,
+       "WARM": 29.4,
+       "MUSKY": 16.1,
+       "SWEATY": 19.3,
+       "AMMONIA/URINOUS": 30.4,
+       "DECAYED": 31.7,
+       "WOOD": 1.0,
+       "GRASS": 19.1,
+       "FLOWER": 40.7,
+       "CHEMICAL": 35.5
+      }
+     }
+    ],
+    "n_stimuli": 2,
+    "n_raters": 53,
+    "pleasantness": 62.0,
+    "intensity": 57.8,
+    "familiarity": 61.6,
+    "descriptors": {
+     "DECAYED": 52.4,
+     "SOUR": 44.4,
+     "FLOWER": 39.0,
+     "BAKERY": 37.2,
+     "CHEMICAL": 34.2,
+     "GRASS": 32.7,
+     "AMMONIA/URINOUS": 32.2,
+     "EDIBLE": 31.2,
+     "SWEET": 31.2,
+     "COLD": 29.2,
+     "SPICES": 27.4,
+     "WARM": 25.6,
+     "ACID": 20.4,
+     "SWEATY": 19.3,
+     "FRUIT": 18.6,
+     "MUSKY": 16.6,
+     "BURNT": 13.5,
+     "GARLIC": 8.2,
+     "WOOD": 7.0,
+     "FISH": 1.0
+    },
+    "top_descriptors": [
+     {
+      "term": "DECAYED",
+      "score": 52.4
+     },
+     {
+      "term": "SOUR",
+      "score": 44.4
+     },
+     {
+      "term": "FLOWER",
+      "score": 39.0
+     },
+     {
+      "term": "BAKERY",
+      "score": 37.2
+     },
+     {
+      "term": "CHEMICAL",
+      "score": 34.2
+     },
+     {
+      "term": "GRASS",
+      "score": 32.7
+     }
+    ]
+   },
+   "dravnieks_1985": {
+    "cid": 2758,
+    "n_stimuli": 1,
+    "n_descriptors": 146,
+    "stimuli": [
+     {
+      "stimulus": "Eucalyptol_high",
+      "concentration": "high",
+      "top": [
+       {
+        "term": "CAMPHOR",
+        "use": 41.1,
+        "applicability": 57.1
+       },
+       {
+        "term": "MEDICINAL",
+        "use": 40.6,
+        "applicability": 57.1
+       },
+       {
+        "term": "EUCALYPTUS",
+        "use": 40.5,
+        "applicability": 50.3
+       },
+       {
+        "term": "FRAGRANT",
+        "use": 34.7,
+        "applicability": 46.3
+       },
+       {
+        "term": "AROMATIC",
+        "use": 34.6,
+        "applicability": 46.3
+       },
+       {
+        "term": "TURPENTINE, PINE OIL",
+        "use": 34.6,
+        "applicability": 46.9
+       },
+       {
+        "term": "COOL,COOLING",
+        "use": 34.4,
+        "applicability": 47.6
+       },
+       {
+        "term": "MINTY, PEPPERMINT",
+        "use": 28.6,
+        "applicability": 44.2
+       }
+      ]
+     }
+    ],
+    "top": [
+     {
+      "term": "CAMPHOR",
+      "use": 41.1,
+      "term_ko": "캠퍼"
+     },
+     {
+      "term": "MEDICINAL",
+      "use": 40.6,
+      "term_ko": "약품"
+     },
+     {
+      "term": "EUCALYPTUS",
+      "use": 40.5,
+      "term_ko": "유칼립투스"
+     },
+     {
+      "term": "FRAGRANT",
+      "use": 34.7,
+      "term_ko": "향기"
+     },
+     {
+      "term": "AROMATIC",
+      "use": 34.6,
+      "term_ko": "아로마"
+     },
+     {
+      "term": "TURPENTINE, PINE OIL",
+      "use": 34.6,
+      "term_ko": ""
+     },
+     {
+      "term": "COOL,COOLING",
+      "use": 34.4,
+      "term_ko": ""
+     },
+     {
+      "term": "MINTY, PEPPERMINT",
+      "use": 28.6,
+      "term_ko": "민트"
+     }
+    ]
+   },
+   "mainland_2015": {
+    "cid": 2758,
+    "n_receptors_tested": 512,
+    "receptors": [
+     {
+      "gene": "OR1E1",
+      "variants": [],
+      "secondary": true,
+      "dose_response": false,
+      "ec50_log": null
+     }
+    ],
+    "n_active": 1
+   }
+  },
+  "camphor": {
+   "keller_2016": {
+    "cid": 2537,
+    "stimuli": [
+     {
+      "stimulus": 809,
+      "concentration": "0.001",
+      "n_raters": 48,
+      "pleasantness": 49.5,
+      "intensity": 57.4,
+      "familiarity": 54.4,
+      "descriptors": {
+       "EDIBLE": 43.2,
+       "BAKERY": 20.3,
+       "SWEET": 27.9,
+       "FRUIT": 12.7,
+       "FISH": 24.0,
+       "GARLIC": 27.3,
+       "SPICES": 14.7,
+       "COLD": 18.8,
+       "SOUR": 7.8,
+       "BURNT": 12.3,
+       "ACID": 25.9,
+       "WARM": 38.8,
+       "MUSKY": 17.3,
+       "SWEATY": 25.8,
+       "AMMONIA/URINOUS": 33.9,
+       "DECAYED": 26.0,
+       "WOOD": 26.6,
+       "GRASS": 28.1,
+       "FLOWER": 27.6,
+       "CHEMICAL": 47.4
+      }
+     },
+     {
+      "stimulus": 810,
+      "concentration": "1e-05",
+      "n_raters": 23,
+      "pleasantness": 53.1,
+      "intensity": 17.3,
+      "familiarity": 31.3,
+      "descriptors": {
+       "EDIBLE": 26.0,
+       "BAKERY": 22.0,
+       "SWEET": 24.8,
+       "FRUIT": 23.0,
+       "FISH": 5.0,
+       "GARLIC": 25.0,
+       "SPICES": 18.0,
+       "COLD": 7.0,
+       "SOUR": 13.3,
+       "BURNT": 27.5,
+       "ACID": 5.5,
+       "WARM": 14.8,
+       "MUSKY": 29.2,
+       "SWEATY": 8.0,
+       "AMMONIA/URINOUS": 3.5,
+       "DECAYED": 34.5,
+       "WOOD": 31.0,
+       "GRASS": 54.0,
+       "FLOWER": 19.0,
+       "CHEMICAL": 30.0
+      }
+     }
+    ],
+    "n_stimuli": 2,
+    "n_raters": 48,
+    "pleasantness": 51.3,
+    "intensity": 37.4,
+    "familiarity": 42.9,
+    "descriptors": {
+     "GRASS": 41.0,
+     "CHEMICAL": 38.7,
+     "EDIBLE": 34.6,
+     "DECAYED": 30.2,
+     "WOOD": 28.8,
+     "WARM": 26.8,
+     "SWEET": 26.4,
+     "GARLIC": 26.1,
+     "FLOWER": 23.3,
+     "MUSKY": 23.2,
+     "BAKERY": 21.1,
+     "BURNT": 19.9,
+     "AMMONIA/URINOUS": 18.7,
+     "FRUIT": 17.9,
+     "SWEATY": 16.9,
+     "SPICES": 16.4,
+     "ACID": 15.7,
+     "FISH": 14.5,
+     "COLD": 12.9,
+     "SOUR": 10.6
+    },
+    "top_descriptors": [
+     {
+      "term": "GRASS",
+      "score": 41.0
+     },
+     {
+      "term": "CHEMICAL",
+      "score": 38.7
+     },
+     {
+      "term": "EDIBLE",
+      "score": 34.6
+     },
+     {
+      "term": "DECAYED",
+      "score": 30.2
+     },
+     {
+      "term": "WOOD",
+      "score": 28.8
+     },
+     {
+      "term": "WARM",
+      "score": 26.8
+     }
+    ]
+   },
+   "dravnieks_1985": {
+    "cid": 2537,
+    "n_stimuli": 1,
+    "n_descriptors": 146,
+    "stimuli": [
+     {
+      "stimulus": "Camphordl_high",
+      "concentration": "high",
+      "top": [
+       {
+        "term": "CAMPHOR",
+        "use": 60.5,
+        "applicability": 52.4
+       },
+       {
+        "term": "MEDICINAL",
+        "use": 49.7,
+        "applicability": 39.1
+       },
+       {
+        "term": "WOODY, RESINOUS",
+        "use": 36.7,
+        "applicability": 26.0
+       },
+       {
+        "term": "AROMATIC",
+        "use": 34.7,
+        "applicability": 26.7
+       },
+       {
+        "term": "COOL,COOLING",
+        "use": 32.6,
+        "applicability": 24.3
+       },
+       {
+        "term": "EUCALYPTUS",
+        "use": 31.3,
+        "applicability": 23.2
+       },
+       {
+        "term": "FRAGRANT",
+        "use": 29.2,
+        "applicability": 21.4
+       },
+       {
+        "term": "ETHERISH, ANAESTHETIC",
+        "use": 27.9,
+        "applicability": 18.5
+       }
+      ]
+     }
+    ],
+    "top": [
+     {
+      "term": "CAMPHOR",
+      "use": 60.5,
+      "term_ko": "캠퍼"
+     },
+     {
+      "term": "MEDICINAL",
+      "use": 49.7,
+      "term_ko": "약품"
+     },
+     {
+      "term": "WOODY, RESINOUS",
+      "use": 36.7,
+      "term_ko": "우디·레지너스"
+     },
+     {
+      "term": "AROMATIC",
+      "use": 34.7,
+      "term_ko": "아로마"
+     },
+     {
+      "term": "COOL,COOLING",
+      "use": 32.6,
+      "term_ko": ""
+     },
+     {
+      "term": "EUCALYPTUS",
+      "use": 31.3,
+      "term_ko": "유칼립투스"
+     },
+     {
+      "term": "FRAGRANT",
+      "use": 29.2,
+      "term_ko": "향기"
+     },
+     {
+      "term": "ETHERISH, ANAESTHETIC",
+      "use": 27.9,
+      "term_ko": ""
+     }
+    ]
+   }
+  },
+  "fenchone": {
+   "keller_2016": {
+    "cid": 14525,
+    "stimuli": [
+     {
+      "stimulus": 831,
+      "concentration": "1e-05",
+      "n_raters": 20,
+      "pleasantness": 49.3,
+      "intensity": 9.4,
+      "familiarity": 33.1,
+      "descriptors": {
+       "EDIBLE": 75.0,
+       "BAKERY": 40.5,
+       "SWEET": 26.8,
+       "FRUIT": 1.0,
+       "GARLIC": 49.0,
+       "SPICES": 14.2,
+       "COLD": 1.0,
+       "SOUR": 23.3,
+       "BURNT": 1.0,
+       "ACID": 1.0,
+       "WARM": 26.8,
+       "MUSKY": 28.6,
+       "SWEATY": 42.7,
+       "AMMONIA/URINOUS": 28.0,
+       "DECAYED": 1.0,
+       "FLOWER": 54.0,
+       "CHEMICAL": 36.7
+      }
+     },
+     {
+      "stimulus": 832,
+      "concentration": "0.001",
+      "n_raters": 52,
+      "pleasantness": 44.6,
+      "intensity": 64.5,
+      "familiarity": 58.3,
+      "descriptors": {
+       "EDIBLE": 12.9,
+       "BAKERY": 2.5,
+       "SWEET": 21.2,
+       "FRUIT": 25.4,
+       "FISH": 16.0,
+       "GARLIC": 14.0,
+       "SPICES": 31.7,
+       "COLD": 24.7,
+       "SOUR": 22.9,
+       "BURNT": 27.8,
+       "ACID": 19.6,
+       "WARM": 24.5,
+       "MUSKY": 37.5,
+       "SWEATY": 23.5,
+       "AMMONIA/URINOUS": 24.9,
+       "DECAYED": 20.4,
+       "WOOD": 20.5,
+       "GRASS": 16.7,
+       "FLOWER": 24.9,
+       "CHEMICAL": 40.6
+      }
+     }
+    ],
+    "n_stimuli": 2,
+    "n_raters": 52,
+    "pleasantness": 47.0,
+    "intensity": 37.0,
+    "familiarity": 45.7,
+    "descriptors": {
+     "EDIBLE": 44.0,
+     "FLOWER": 39.5,
+     "CHEMICAL": 38.7,
+     "SWEATY": 33.1,
+     "MUSKY": 33.0,
+     "GARLIC": 31.5,
+     "AMMONIA/URINOUS": 26.4,
+     "WARM": 25.6,
+     "SWEET": 24.0,
+     "SOUR": 23.1,
+     "SPICES": 22.9,
+     "BAKERY": 21.5,
+     "WOOD": 20.5,
+     "GRASS": 16.7,
+     "FISH": 16.0,
+     "BURNT": 14.4,
+     "FRUIT": 13.2,
+     "COLD": 12.8,
+     "DECAYED": 10.7,
+     "ACID": 10.3
+    },
+    "top_descriptors": [
+     {
+      "term": "EDIBLE",
+      "score": 44.0
+     },
+     {
+      "term": "FLOWER",
+      "score": 39.5
+     },
+     {
+      "term": "CHEMICAL",
+      "score": 38.7
+     },
+     {
+      "term": "SWEATY",
+      "score": 33.1
+     },
+     {
+      "term": "MUSKY",
+      "score": 33.0
+     },
+     {
+      "term": "GARLIC",
+      "score": 31.5
+     }
+    ]
+   }
+  },
+  "benzyl acetate": {
+   "keller_2016": {
+    "cid": 8785,
+    "stimuli": [
+     {
+      "stimulus": 341,
+      "concentration": "1e-05",
+      "n_raters": 47,
+      "pleasantness": 54.7,
+      "intensity": 36.3,
+      "familiarity": 42.3,
+      "descriptors": {
+       "EDIBLE": 28.9,
+       "BAKERY": 16.0,
+       "SWEET": 28.9,
+       "FRUIT": 35.7,
+       "FISH": 1.0,
+       "GARLIC": 3.5,
+       "SPICES": 19.3,
+       "COLD": 19.2,
+       "SOUR": 17.2,
+       "BURNT": 5.2,
+       "ACID": 19.0,
+       "WARM": 28.1,
+       "MUSKY": 7.6,
+       "SWEATY": 9.7,
+       "AMMONIA/URINOUS": 34.1,
+       "DECAYED": 18.2,
+       "WOOD": 10.0,
+       "GRASS": 23.7,
+       "FLOWER": 28.3,
+       "CHEMICAL": 26.7
+      }
+     },
+     {
+      "stimulus": 342,
+      "concentration": "0.001",
+      "n_raters": 51,
+      "pleasantness": 60.4,
+      "intensity": 65.8,
+      "familiarity": 52.3,
+      "descriptors": {
+       "EDIBLE": 21.5,
+       "BAKERY": 29.3,
+       "SWEET": 31.0,
+       "FRUIT": 26.2,
+       "FISH": 1.0,
+       "GARLIC": 1.0,
+       "SPICES": 43.8,
+       "COLD": 30.1,
+       "SOUR": 24.2,
+       "BURNT": 19.7,
+       "ACID": 23.8,
+       "WARM": 14.8,
+       "MUSKY": 19.7,
+       "SWEATY": 15.2,
+       "AMMONIA/URINOUS": 41.3,
+       "DECAYED": 1.0,
+       "WOOD": 1.0,
+       "GRASS": 10.5,
+       "FLOWER": 33.4,
+       "CHEMICAL": 33.5
+      }
+     }
+    ],
+    "n_stimuli": 2,
+    "n_raters": 51,
+    "pleasantness": 57.5,
+    "intensity": 51.0,
+    "familiarity": 47.3,
+    "descriptors": {
+     "AMMONIA/URINOUS": 37.7,
+     "SPICES": 31.5,
+     "FRUIT": 31.0,
+     "FLOWER": 30.9,
+     "CHEMICAL": 30.1,
+     "SWEET": 29.9,
+     "EDIBLE": 25.2,
+     "COLD": 24.6,
+     "BAKERY": 22.6,
+     "WARM": 21.5,
+     "ACID": 21.4,
+     "SOUR": 20.7,
+     "GRASS": 17.1,
+     "MUSKY": 13.6,
+     "BURNT": 12.4,
+     "SWEATY": 12.4,
+     "DECAYED": 9.6,
+     "WOOD": 5.5,
+     "GARLIC": 2.2,
+     "FISH": 1.0
+    },
+    "top_descriptors": [
+     {
+      "term": "AMMONIA/URINOUS",
+      "score": 37.7
+     },
+     {
+      "term": "SPICES",
+      "score": 31.5
+     },
+     {
+      "term": "FRUIT",
+      "score": 31.0
+     },
+     {
+      "term": "FLOWER",
+      "score": 30.9
+     },
+     {
+      "term": "CHEMICAL",
+      "score": 30.1
+     },
+     {
+      "term": "SWEET",
+      "score": 29.9
+     }
+    ]
+   }
+  },
+  "phenylethyl alcohol": {
+   "keller_2016": {
+    "cid": 6054,
+    "stimuli": [
+     {
+      "stimulus": 651,
+      "concentration": "0.001",
+      "n_raters": 55,
+      "pleasantness": 52.8,
+      "intensity": 70.0,
+      "familiarity": 61.9,
+      "descriptors": {
+       "EDIBLE": 27.7,
+       "BAKERY": 6.5,
+       "SWEET": 39.4,
+       "FRUIT": 20.2,
+       "FISH": 1.0,
+       "GARLIC": 6.5,
+       "SPICES": 26.5,
+       "COLD": 18.5,
+       "SOUR": 23.9,
+       "BURNT": 14.3,
+       "ACID": 35.0,
+       "WARM": 33.7,
+       "MUSKY": 31.0,
+       "SWEATY": 23.7,
+       "AMMONIA/URINOUS": 33.3,
+       "DECAYED": 13.0,
+       "WOOD": 16.7,
+       "GRASS": 38.2,
+       "FLOWER": 30.0,
+       "CHEMICAL": 35.3
+      }
+     },
+     {
+      "stimulus": 652,
+      "concentration": "1e-05",
+      "n_raters": 50,
+      "pleasantness": 63.1,
+      "intensity": 59.6,
+      "familiarity": 61.8,
+      "descriptors": {
+       "EDIBLE": 24.3,
+       "BAKERY": 15.4,
+       "SWEET": 30.7,
+       "FRUIT": 16.1,
+       "FISH": 1.0,
+       "GARLIC": 1.0,
+       "SPICES": 23.2,
+       "COLD": 29.3,
+       "SOUR": 24.0,
+       "BURNT": 10.0,
+       "ACID": 28.4,
+       "WARM": 25.1,
+       "MUSKY": 13.9,
+       "SWEATY": 21.5,
+       "AMMONIA/URINOUS": 31.7,
+       "DECAYED": 1.5,
+       "WOOD": 18.8,
+       "GRASS": 20.5,
+       "FLOWER": 46.8,
+       "CHEMICAL": 26.2
+      }
+     }
+    ],
+    "n_stimuli": 2,
+    "n_raters": 55,
+    "pleasantness": 58.0,
+    "intensity": 64.8,
+    "familiarity": 61.8,
+    "descriptors": {
+     "FLOWER": 38.4,
+     "SWEET": 35.0,
+     "AMMONIA/URINOUS": 32.5,
+     "ACID": 31.7,
+     "CHEMICAL": 30.8,
+     "WARM": 29.4,
+     "GRASS": 29.4,
+     "EDIBLE": 26.0,
+     "SPICES": 24.9,
+     "COLD": 23.9,
+     "SOUR": 23.9,
+     "SWEATY": 22.6,
+     "MUSKY": 22.4,
+     "FRUIT": 18.1,
+     "WOOD": 17.8,
+     "BURNT": 12.2,
+     "BAKERY": 10.9,
+     "DECAYED": 7.2,
+     "GARLIC": 3.8,
+     "FISH": 1.0
+    },
+    "top_descriptors": [
+     {
+      "term": "FLOWER",
+      "score": 38.4
+     },
+     {
+      "term": "SWEET",
+      "score": 35.0
+     },
+     {
+      "term": "AMMONIA/URINOUS",
+      "score": 32.5
+     },
+     {
+      "term": "ACID",
+      "score": 31.7
+     },
+     {
+      "term": "CHEMICAL",
+      "score": 30.8
+     },
+     {
+      "term": "WARM",
+      "score": 29.4
+     }
+    ]
+   },
+   "dravnieks_1985": {
+    "cid": 6054,
+    "n_stimuli": 2,
+    "n_descriptors": 146,
+    "stimuli": [
+     {
+      "stimulus": "PhenylEthanolhighconc_high",
+      "concentration": "high",
+      "top": [
+       {
+        "term": "FRAGRANT",
+        "use": 73.6,
+        "applicability": 59.1
+       },
+       {
+        "term": "FLORAL",
+        "use": 67.1,
+        "applicability": 58.4
+       },
+       {
+        "term": "ROSE",
+        "use": 66.4,
+        "applicability": 57.5
+       },
+       {
+        "term": "PERFUMERY",
+        "use": 52.1,
+        "applicability": 40.1
+       },
+       {
+        "term": "SWEET",
+        "use": 47.1,
+        "applicability": 34.4
+       },
+       {
+        "term": "AROMATIC",
+        "use": 42.9,
+        "applicability": 33.8
+       },
+       {
+        "term": "VIOLETS",
+        "use": 28.6,
+        "applicability": 20.4
+       },
+       {
+        "term": "LIGHT",
+        "use": 27.9,
+        "applicability": 19.4
+       }
+      ]
+     },
+     {
+      "stimulus": "PhenylEthanollowconc_low",
+      "concentration": "low",
+      "top": [
+       {
+        "term": "FRAGRANT",
+        "use": 68.0,
+        "applicability": 54.0
+       },
+       {
+        "term": "FLORAL",
+        "use": 57.3,
+        "applicability": 49.8
+       },
+       {
+        "term": "ROSE",
+        "use": 56.9,
+        "applicability": 47.8
+       },
+       {
+        "term": "PERFUMERY",
+        "use": 54.9,
+        "applicability": 43.0
+       },
+       {
+        "term": "AROMATIC",
+        "use": 45.8,
+        "applicability": 34.8
+       },
+       {
+        "term": "SWEET",
+        "use": 43.5,
+        "applicability": 31.7
+       },
+       {
+        "term": "LIGHT",
+        "use": 33.7,
+        "applicability": 23.8
+       },
+       {
+        "term": "HERBAL, GREEN,CUTGRASS",
+        "use": 27.0,
+        "applicability": 18.5
+       }
+      ]
+     }
+    ],
+    "top": [
+     {
+      "term": "FRAGRANT",
+      "use": 70.8,
+      "term_ko": "향기"
+     },
+     {
+      "term": "FLORAL",
+      "use": 62.2,
+      "term_ko": "플로럴"
+     },
+     {
+      "term": "ROSE",
+      "use": 61.7,
+      "term_ko": "장미"
+     },
+     {
+      "term": "PERFUMERY",
+      "use": 53.5,
+      "term_ko": "향수"
+     },
+     {
+      "term": "SWEET",
+      "use": 45.3,
+      "term_ko": "단맛"
+     },
+     {
+      "term": "AROMATIC",
+      "use": 44.3,
+      "term_ko": "아로마"
+     },
+     {
+      "term": "LIGHT",
+      "use": 30.8,
+      "term_ko": "가벼움"
+     },
+     {
+      "term": "VIOLETS",
+      "use": 28.6,
+      "term_ko": "제비꽃"
+     }
+    ]
+   }
+  },
+  "beta-ionone": {
+   "keller_2016": {
+    "cid": 638014,
+    "stimuli": [
+     {
+      "stimulus": 857,
+      "concentration": "0.001",
+      "n_raters": 51,
+      "pleasantness": 49.2,
+      "intensity": 69.7,
+      "familiarity": 52.4,
+      "descriptors": {
+       "EDIBLE": 34.6,
+       "BAKERY": 42.8,
+       "SWEET": 35.5,
+       "FRUIT": 16.9,
+       "FISH": 8.0,
+       "GARLIC": 20.0,
+       "SPICES": 28.0,
+       "COLD": 42.0,
+       "SOUR": 33.4,
+       "BURNT": 17.2,
+       "ACID": 16.4,
+       "WARM": 24.3,
+       "MUSKY": 23.5,
+       "SWEATY": 23.9,
+       "AMMONIA/URINOUS": 18.8,
+       "DECAYED": 12.7,
+       "WOOD": 12.7,
+       "GRASS": 27.2,
+       "FLOWER": 16.6,
+       "CHEMICAL": 28.6
+      }
+     },
+     {
+      "stimulus": 858,
+      "concentration": "1e-05",
+      "n_raters": 43,
+      "pleasantness": 62.6,
+      "intensity": 50.6,
+      "familiarity": 49.8,
+      "descriptors": {
+       "EDIBLE": 24.7,
+       "BAKERY": 35.7,
+       "SWEET": 36.3,
+       "FRUIT": 27.3,
+       "FISH": 13.0,
+       "GARLIC": 23.0,
+       "SPICES": 35.0,
+       "COLD": 30.7,
+       "SOUR": 10.1,
+       "BURNT": 17.3,
+       "ACID": 13.5,
+       "WARM": 24.9,
+       "MUSKY": 29.7,
+       "SWEATY": 3.0,
+       "AMMONIA/URINOUS": 38.7,
+       "DECAYED": 28.0,
+       "WOOD": 20.2,
+       "GRASS": 17.5,
+       "FLOWER": 41.7,
+       "CHEMICAL": 36.5
+      }
+     }
+    ],
+    "n_stimuli": 2,
+    "n_raters": 51,
+    "pleasantness": 55.9,
+    "intensity": 60.2,
+    "familiarity": 51.1,
+    "descriptors": {
+     "BAKERY": 39.2,
+     "COLD": 36.4,
+     "SWEET": 35.9,
+     "CHEMICAL": 32.5,
+     "SPICES": 31.5,
+     "EDIBLE": 29.6,
+     "FLOWER": 29.2,
+     "AMMONIA/URINOUS": 28.8,
+     "MUSKY": 26.6,
+     "WARM": 24.6,
+     "GRASS": 22.4,
+     "FRUIT": 22.1,
+     "SOUR": 21.8,
+     "GARLIC": 21.5,
+     "DECAYED": 20.4,
+     "BURNT": 17.2,
+     "WOOD": 16.4,
+     "ACID": 14.9,
+     "SWEATY": 13.4,
+     "FISH": 10.5
+    },
+    "top_descriptors": [
+     {
+      "term": "BAKERY",
+      "score": 39.2
+     },
+     {
+      "term": "COLD",
+      "score": 36.4
+     },
+     {
+      "term": "SWEET",
+      "score": 35.9
+     },
+     {
+      "term": "CHEMICAL",
+      "score": 32.5
+     },
+     {
+      "term": "SPICES",
+      "score": 31.5
+     },
+     {
+      "term": "EDIBLE",
+      "score": 29.6
+     }
+    ]
+   },
+   "dravnieks_1985": {
+    "cid": 638014,
+    "n_stimuli": 2,
+    "n_descriptors": 146,
+    "stimuli": [
+     {
+      "stimulus": "Ionone-betahighconc_high",
+      "concentration": "high",
+      "top": [
+       {
+        "term": "FRAGRANT",
+        "use": 54.5,
+        "applicability": 38.8
+       },
+       {
+        "term": "SWEET",
+        "use": 40.3,
+        "applicability": 28.2
+       },
+       {
+        "term": "PERFUMERY",
+        "use": 35.8,
+        "applicability": 26.7
+       },
+       {
+        "term": "LIGHT",
+        "use": 35.8,
+        "applicability": 24.6
+       },
+       {
+        "term": "WOODY, RESINOUS",
+        "use": 34.3,
+        "applicability": 24.1
+       },
+       {
+        "term": "FLORAL",
+        "use": 29.1,
+        "applicability": 20.2
+       },
+       {
+        "term": "AROMATIC",
+        "use": 29.1,
+        "applicability": 20.0
+       },
+       {
+        "term": "CEDARWOOD",
+        "use": 22.4,
+        "applicability": 16.4
+       }
+      ]
+     },
+     {
+      "stimulus": "Ionone-betalowconc_low",
+      "concentration": "low",
+      "top": [
+       {
+        "term": "FRAGRANT",
+        "use": 70.3,
+        "applicability": 53.9
+       },
+       {
+        "term": "SWEET",
+        "use": 55.5,
+        "applicability": 41.0
+       },
+       {
+        "term": "PERFUMERY",
+        "use": 53.9,
+        "applicability": 41.0
+       },
+       {
+        "term": "FLORAL",
+        "use": 45.3,
+        "applicability": 35.3
+       },
+       {
+        "term": "LIGHT",
+        "use": 40.6,
+        "applicability": 27.7
+       },
+       {
+        "term": "AROMATIC",
+        "use": 39.8,
+        "applicability": 29.3
+       },
+       {
+        "term": "FRUITY,OTHER THAN CITRUS",
+        "use": 32.0,
+        "applicability": 23.6
+       },
+       {
+        "term": "ROSE",
+        "use": 23.4,
+        "applicability": 17.2
+       }
+      ]
+     }
+    ],
+    "top": [
+     {
+      "term": "FRAGRANT",
+      "use": 62.4,
+      "term_ko": "향기"
+     },
+     {
+      "term": "SWEET",
+      "use": 47.9,
+      "term_ko": "단맛"
+     },
+     {
+      "term": "PERFUMERY",
+      "use": 44.8,
+      "term_ko": "향수"
+     },
+     {
+      "term": "LIGHT",
+      "use": 38.2,
+      "term_ko": "가벼움"
+     },
+     {
+      "term": "FLORAL",
+      "use": 37.2,
+      "term_ko": "플로럴"
+     },
+     {
+      "term": "AROMATIC",
+      "use": 34.5,
+      "term_ko": "아로마"
+     },
+     {
+      "term": "WOODY, RESINOUS",
+      "use": 34.3,
+      "term_ko": "우디·레지너스"
+     },
+     {
+      "term": "FRUITY,OTHER THAN CITRUS",
+      "use": 32.0,
+      "term_ko": ""
+     }
+    ]
+   }
+  },
+  "methyl anthranilate": {
+   "keller_2016": {
+    "cid": 8635,
+    "stimuli": [
+     {
+      "stimulus": 319,
+      "concentration": "0.001",
+      "n_raters": 54,
+      "pleasantness": 65.3,
+      "intensity": 74.6,
+      "familiarity": 61.8,
+      "descriptors": {
+       "EDIBLE": 26.6,
+       "BAKERY": 9.0,
+       "SWEET": 34.4,
+       "FRUIT": 32.5,
+       "FISH": 1.0,
+       "GARLIC": 1.0,
+       "SPICES": 25.3,
+       "COLD": 32.1,
+       "SOUR": 26.0,
+       "BURNT": 25.8,
+       "ACID": 18.4,
+       "WARM": 21.1,
+       "MUSKY": 27.8,
+       "SWEATY": 15.0,
+       "AMMONIA/URINOUS": 12.6,
+       "DECAYED": 10.0,
+       "WOOD": 13.0,
+       "GRASS": 11.0,
+       "FLOWER": 34.2,
+       "CHEMICAL": 26.0
+      }
+     },
+     {
+      "stimulus": 320,
+      "concentration": "1e-05",
+      "n_raters": 49,
+      "pleasantness": 64.0,
+      "intensity": 58.3,
+      "familiarity": 56.7,
+      "descriptors": {
+       "EDIBLE": 46.0,
+       "BAKERY": 16.5,
+       "SWEET": 42.3,
+       "FRUIT": 28.9,
+       "FISH": 3.0,
+       "GARLIC": 1.0,
+       "SPICES": 32.0,
+       "COLD": 21.8,
+       "SOUR": 21.2,
+       "BURNT": 19.6,
+       "ACID": 11.5,
+       "WARM": 22.7,
+       "MUSKY": 20.7,
+       "SWEATY": 16.0,
+       "AMMONIA/URINOUS": 8.0,
+       "DECAYED": 6.0,
+       "WOOD": 36.0,
+       "GRASS": 15.0,
+       "FLOWER": 42.6,
+       "CHEMICAL": 27.1
+      }
+     }
+    ],
+    "n_stimuli": 2,
+    "n_raters": 54,
+    "pleasantness": 64.7,
+    "intensity": 66.4,
+    "familiarity": 59.2,
+    "descriptors": {
+     "FLOWER": 38.4,
+     "SWEET": 38.3,
+     "EDIBLE": 36.3,
+     "FRUIT": 30.7,
+     "SPICES": 28.6,
+     "COLD": 27.0,
+     "CHEMICAL": 26.6,
+     "WOOD": 24.5,
+     "MUSKY": 24.2,
+     "SOUR": 23.6,
+     "BURNT": 22.7,
+     "WARM": 21.9,
+     "SWEATY": 15.5,
+     "ACID": 14.9,
+     "GRASS": 13.0,
+     "BAKERY": 12.8,
+     "AMMONIA/URINOUS": 10.3,
+     "DECAYED": 8.0,
+     "FISH": 2.0,
+     "GARLIC": 1.0
+    },
+    "top_descriptors": [
+     {
+      "term": "FLOWER",
+      "score": 38.4
+     },
+     {
+      "term": "SWEET",
+      "score": 38.3
+     },
+     {
+      "term": "EDIBLE",
+      "score": 36.3
+     },
+     {
+      "term": "FRUIT",
+      "score": 30.7
+     },
+     {
+      "term": "SPICES",
+      "score": 28.6
+     },
+     {
+      "term": "COLD",
+      "score": 27.0
+     }
+    ]
+   },
+   "dravnieks_1985": {
+    "cid": 8635,
+    "n_stimuli": 1,
+    "n_descriptors": 146,
+    "stimuli": [
+     {
+      "stimulus": "MethylAnthranilate_high",
+      "concentration": "high",
+      "top": [
+       {
+        "term": "MUSTY, EARTHY, MOLDY",
+        "use": 432.0,
+        "applicability": 2.8
+       },
+       {
+        "term": "FRAGRANT",
+        "use": 69.8,
+        "applicability": 52.6
+       },
+       {
+        "term": "SWEET",
+        "use": 61.1,
+        "applicability": 49.0
+       },
+       {
+        "term": "FRUITY,OTHER THAN CITRUS",
+        "use": 47.5,
+        "applicability": 38.7
+       },
+       {
+        "term": "AROMATIC",
+        "use": 47.5,
+        "applicability": 37.0
+       },
+       {
+        "term": "PERFUMERY",
+        "use": 42.5,
+        "applicability": 30.8
+       },
+       {
+        "term": "FLORAL",
+        "use": 37.4,
+        "applicability": 26.9
+       },
+       {
+        "term": "LIGHT",
+        "use": 33.8,
+        "applicability": 23.1
+       }
+      ]
+     }
+    ],
+    "top": [
+     {
+      "term": "MUSTY, EARTHY, MOLDY",
+      "use": 432.0,
+      "term_ko": ""
+     },
+     {
+      "term": "FRAGRANT",
+      "use": 69.8,
+      "term_ko": "향기"
+     },
+     {
+      "term": "SWEET",
+      "use": 61.1,
+      "term_ko": "단맛"
+     },
+     {
+      "term": "FRUITY,OTHER THAN CITRUS",
+      "use": 47.5,
+      "term_ko": ""
+     },
+     {
+      "term": "AROMATIC",
+      "use": 47.5,
+      "term_ko": "아로마"
+     },
+     {
+      "term": "PERFUMERY",
+      "use": 42.5,
+      "term_ko": "향수"
+     },
+     {
+      "term": "FLORAL",
+      "use": 37.4,
+      "term_ko": "플로럴"
+     },
+     {
+      "term": "LIGHT",
+      "use": 33.8,
+      "term_ko": "가벼움"
+     }
+    ]
+   }
+  },
+  "vanillin": {
+   "keller_2016": {
+    "cid": 1183,
+    "stimuli": [
+     {
+      "stimulus": 259,
+      "concentration": "0.001",
+      "n_raters": 54,
+      "pleasantness": 84.0,
+      "intensity": 74.4,
+      "familiarity": 80.7,
+      "descriptors": {
+       "EDIBLE": 39.7,
+       "BAKERY": 33.7,
+       "SWEET": 34.8,
+       "FRUIT": 25.5,
+       "FISH": 1.0,
+       "GARLIC": 1.0,
+       "SPICES": 17.0,
+       "COLD": 6.7,
+       "SOUR": 11.5,
+       "BURNT": 22.7,
+       "ACID": 11.5,
+       "WARM": 41.2,
+       "MUSKY": 8.8,
+       "SWEATY": 2.0,
+       "AMMONIA/URINOUS": 2.0,
+       "DECAYED": 2.0,
+       "WOOD": 1.0,
+       "GRASS": 16.5,
+       "FLOWER": 19.8,
+       "CHEMICAL": 22.7
+      }
+     },
+     {
+      "stimulus": 260,
+      "concentration": "0.1",
+      "n_raters": 53,
+      "pleasantness": 86.3,
+      "intensity": 72.1,
+      "familiarity": 82.6,
+      "descriptors": {
+       "EDIBLE": 29.1,
+       "BAKERY": 26.5,
+       "SWEET": 39.9,
+       "FRUIT": 18.5,
+       "FISH": 1.0,
+       "GARLIC": 1.0,
+       "SPICES": 17.3,
+       "COLD": 21.0,
+       "SOUR": 2.0,
+       "BURNT": 14.0,
+       "ACID": 1.0,
+       "WARM": 34.5,
+       "MUSKY": 8.0,
+       "SWEATY": 1.0,
+       "AMMONIA/URINOUS": 1.0,
+       "DECAYED": 1.0,
+       "WOOD": 12.0,
+       "GRASS": 14.5,
+       "FLOWER": 14.6,
+       "CHEMICAL": 7.5
+      }
+     }
+    ],
+    "n_stimuli": 2,
+    "n_raters": 54,
+    "pleasantness": 85.2,
+    "intensity": 73.2,
+    "familiarity": 81.7,
+    "descriptors": {
+     "WARM": 37.9,
+     "SWEET": 37.3,
+     "EDIBLE": 34.4,
+     "BAKERY": 30.1,
+     "FRUIT": 22.0,
+     "BURNT": 18.4,
+     "FLOWER": 17.2,
+     "SPICES": 17.1,
+     "GRASS": 15.5,
+     "CHEMICAL": 15.1,
+     "COLD": 13.8,
+     "MUSKY": 8.4,
+     "SOUR": 6.8,
+     "WOOD": 6.5,
+     "ACID": 6.2,
+     "SWEATY": 1.5,
+     "AMMONIA/URINOUS": 1.5,
+     "DECAYED": 1.5,
+     "FISH": 1.0,
+     "GARLIC": 1.0
+    },
+    "top_descriptors": [
+     {
+      "term": "WARM",
+      "score": 37.9
+     },
+     {
+      "term": "SWEET",
+      "score": 37.3
+     },
+     {
+      "term": "EDIBLE",
+      "score": 34.4
+     },
+     {
+      "term": "BAKERY",
+      "score": 30.1
+     },
+     {
+      "term": "FRUIT",
+      "score": 22.0
+     },
+     {
+      "term": "BURNT",
+      "score": 18.4
+     }
+    ]
+   },
+   "dravnieks_1985": {
+    "cid": 1183,
+    "n_stimuli": 1,
+    "n_descriptors": 146,
+    "stimuli": [
+     {
+      "stimulus": "Vanillin_high",
+      "concentration": "high",
+      "top": [
+       {
+        "term": "VANILLA",
+        "use": 67.1,
+        "applicability": 56.7
+       },
+       {
+        "term": "SWEET",
+        "use": 65.8,
+        "applicability": 55.3
+       },
+       {
+        "term": "CHOCOLATE",
+        "use": 48.3,
+        "applicability": 39.7
+       },
+       {
+        "term": "FRAGRANT",
+        "use": 40.9,
+        "applicability": 30.0
+       },
+       {
+        "term": "AROMATIC",
+        "use": 39.6,
+        "applicability": 29.6
+       },
+       {
+        "term": "MALTY",
+        "use": 32.9,
+        "applicability": 23.1
+       },
+       {
+        "term": "LIGHT",
+        "use": 30.9,
+        "applicability": 21.4
+       },
+       {
+        "term": "CARAMEL",
+        "use": 26.2,
+        "applicability": 17.1
+       }
+      ]
+     }
+    ],
+    "top": [
+     {
+      "term": "VANILLA",
+      "use": 67.1,
+      "term_ko": "바닐라"
+     },
+     {
+      "term": "SWEET",
+      "use": 65.8,
+      "term_ko": "단맛"
+     },
+     {
+      "term": "CHOCOLATE",
+      "use": 48.3,
+      "term_ko": "초콜릿"
+     },
+     {
+      "term": "FRAGRANT",
+      "use": 40.9,
+      "term_ko": "향기"
+     },
+     {
+      "term": "AROMATIC",
+      "use": 39.6,
+      "term_ko": "아로마"
+     },
+     {
+      "term": "MALTY",
+      "use": 32.9,
+      "term_ko": "맥아"
+     },
+     {
+      "term": "LIGHT",
+      "use": 30.9,
+      "term_ko": "가벼움"
+     },
+     {
+      "term": "CARAMEL",
+      "use": 26.2,
+      "term_ko": "카라멜"
+     }
+    ]
+   },
+   "mainland_2015": {
+    "cid": 1183,
+    "n_receptors_tested": 518,
+    "receptors": [
+     {
+      "gene": "OR10G4",
+      "variants": [
+       "A9V/M134V/V195E/R235G/K295Q",
+       "K295Q"
+      ],
+      "secondary": true,
+      "dose_response": true,
+      "ec50_log": -3.0
+     },
+     {
+      "gene": "OR10G3",
+      "variants": [
+       "S73G"
+      ],
+      "secondary": false,
+      "dose_response": true,
+      "ec50_log": -3.0
+     },
+     {
+      "gene": "OR2J2",
+      "variants": [
+       "T111A"
+      ],
+      "secondary": true,
+      "dose_response": false,
+      "ec50_log": null
+     },
+     {
+      "gene": "OR51S1",
+      "variants": [],
+      "secondary": true,
+      "dose_response": false,
+      "ec50_log": null
+     }
+    ],
+    "n_active": 4
+   }
+  },
+  "coumarin": {
+   "keller_2016": {
+    "cid": 323,
+    "stimuli": [
+     {
+      "stimulus": 899,
+      "concentration": "0.1",
+      "n_raters": 55,
+      "pleasantness": 67.2,
+      "intensity": 77.5,
+      "familiarity": 63.8,
+      "descriptors": {
+       "EDIBLE": 27.4,
+       "BAKERY": 27.6,
+       "SWEET": 39.2,
+       "FRUIT": 26.0,
+       "FISH": 1.0,
+       "GARLIC": 1.0,
+       "SPICES": 34.5,
+       "COLD": 19.6,
+       "SOUR": 27.3,
+       "BURNT": 28.1,
+       "ACID": 19.1,
+       "WARM": 35.3,
+       "MUSKY": 13.7,
+       "SWEATY": 15.2,
+       "AMMONIA/URINOUS": 19.7,
+       "DECAYED": 17.0,
+       "WOOD": 16.2,
+       "GRASS": 4.0,
+       "FLOWER": 37.9,
+       "CHEMICAL": 34.8
+      }
+     },
+     {
+      "stimulus": 900,
+      "concentration": "0.001",
+      "n_raters": 52,
+      "pleasantness": 65.1,
+      "intensity": 62.8,
+      "familiarity": 55.9,
+      "descriptors": {
+       "EDIBLE": 27.4,
+       "BAKERY": 20.8,
+       "SWEET": 37.8,
+       "FRUIT": 7.3,
+       "FISH": 1.0,
+       "GARLIC": 23.3,
+       "SPICES": 35.8,
+       "COLD": 8.6,
+       "SOUR": 46.0,
+       "BURNT": 19.3,
+       "ACID": 4.6,
+       "WARM": 38.3,
+       "MUSKY": 27.2,
+       "SWEATY": 15.0,
+       "AMMONIA/URINOUS": 23.7,
+       "DECAYED": 6.5,
+       "WOOD": 17.8,
+       "GRASS": 22.2,
+       "FLOWER": 30.1,
+       "CHEMICAL": 32.4
+      }
+     }
+    ],
+    "n_stimuli": 2,
+    "n_raters": 55,
+    "pleasantness": 66.2,
+    "intensity": 70.2,
+    "familiarity": 59.8,
+    "descriptors": {
+     "SWEET": 38.5,
+     "WARM": 36.8,
+     "SOUR": 36.6,
+     "SPICES": 35.1,
+     "FLOWER": 34.0,
+     "CHEMICAL": 33.6,
+     "EDIBLE": 27.4,
+     "BAKERY": 24.2,
+     "BURNT": 23.7,
+     "AMMONIA/URINOUS": 21.7,
+     "MUSKY": 20.4,
+     "WOOD": 17.0,
+     "FRUIT": 16.6,
+     "SWEATY": 15.1,
+     "COLD": 14.1,
+     "GRASS": 13.1,
+     "GARLIC": 12.2,
+     "ACID": 11.9,
+     "DECAYED": 11.8,
+     "FISH": 1.0
+    },
+    "top_descriptors": [
+     {
+      "term": "SWEET",
+      "score": 38.5
+     },
+     {
+      "term": "WARM",
+      "score": 36.8
+     },
+     {
+      "term": "SOUR",
+      "score": 36.6
+     },
+     {
+      "term": "SPICES",
+      "score": 35.1
+     },
+     {
+      "term": "FLOWER",
+      "score": 34.0
+     },
+     {
+      "term": "CHEMICAL",
+      "score": 33.6
+     }
+    ]
+   },
+   "dravnieks_1985": {
+    "cid": 323,
+    "n_stimuli": 1,
+    "n_descriptors": 146,
+    "stimuli": [
+     {
+      "stimulus": "Coumarin_high",
+      "concentration": "high",
+      "top": [
+       {
+        "term": "FRAGRANT",
+        "use": 56.4,
+        "applicability": 42.2
+       },
+       {
+        "term": "SWEET",
+        "use": 55.0,
+        "applicability": 40.1
+       },
+       {
+        "term": "AROMATIC",
+        "use": 47.9,
+        "applicability": 36.7
+       },
+       {
+        "term": "ALMOND",
+        "use": 42.9,
+        "applicability": 30.5
+       },
+       {
+        "term": "PERFUMERY",
+        "use": 25.0,
+        "applicability": 18.2
+       },
+       {
+        "term": "LIGHT",
+        "use": 24.3,
+        "applicability": 16.6
+       },
+       {
+        "term": "VANILLA",
+        "use": 22.1,
+        "applicability": 14.8
+       },
+       {
+        "term": "FLORAL",
+        "use": 20.7,
+        "applicability": 14.2
+       }
+      ]
+     }
+    ],
+    "top": [
+     {
+      "term": "FRAGRANT",
+      "use": 56.4,
+      "term_ko": "향기"
+     },
+     {
+      "term": "SWEET",
+      "use": 55.0,
+      "term_ko": "단맛"
+     },
+     {
+      "term": "AROMATIC",
+      "use": 47.9,
+      "term_ko": "아로마"
+     },
+     {
+      "term": "ALMOND",
+      "use": 42.9,
+      "term_ko": "아몬드"
+     },
+     {
+      "term": "PERFUMERY",
+      "use": 25.0,
+      "term_ko": "향수"
+     },
+     {
+      "term": "LIGHT",
+      "use": 24.3,
+      "term_ko": "가벼움"
+     },
+     {
+      "term": "VANILLA",
+      "use": 22.1,
+      "term_ko": "바닐라"
+     },
+     {
+      "term": "FLORAL",
+      "use": 20.7,
+      "term_ko": "플로럴"
+     }
+    ]
+   },
+   "mainland_2015": {
+    "cid": 323,
+    "n_receptors_tested": 12,
+    "receptors": [
+     {
+      "gene": "OR1C1",
+      "variants": [],
+      "secondary": false,
+      "dose_response": true,
+      "ec50_log": -6.0
+     },
+     {
+      "gene": "OR2B11",
+      "variants": [
+       "V198M",
+       "V198M/T293I/D300G"
+      ],
+      "secondary": false,
+      "dose_response": true,
+      "ec50_log": -3.0
+     },
+     {
+      "gene": "OR5P3",
+      "variants": [],
+      "secondary": false,
+      "dose_response": true,
+      "ec50_log": -5.0
+     }
+    ],
+    "n_active": 3
+   }
+  },
+  "eugenol": {
+   "keller_2016": {
+    "cid": 3314,
+    "stimuli": [
+     {
+      "stimulus": 945,
+      "concentration": "0.001",
+      "n_raters": 54,
+      "pleasantness": 67.6,
+      "intensity": 74.6,
+      "familiarity": 73.6,
+      "descriptors": {
+       "EDIBLE": 26.8,
+       "BAKERY": 42.4,
+       "SWEET": 36.7,
+       "FRUIT": 22.8,
+       "FISH": 1.0,
+       "GARLIC": 2.0,
+       "SPICES": 38.1,
+       "COLD": 39.4,
+       "SOUR": 27.8,
+       "BURNT": 13.3,
+       "ACID": 20.8,
+       "WARM": 24.9,
+       "MUSKY": 18.3,
+       "SWEATY": 13.0,
+       "AMMONIA/URINOUS": 34.0,
+       "DECAYED": 25.3,
+       "WOOD": 20.2,
+       "GRASS": 3.3,
+       "FLOWER": 26.3,
+       "CHEMICAL": 28.5
+      }
+     },
+     {
+      "stimulus": 946,
+      "concentration": "1e-05",
+      "n_raters": 51,
+      "pleasantness": 61.8,
+      "intensity": 60.4,
+      "familiarity": 59.6,
+      "descriptors": {
+       "EDIBLE": 36.5,
+       "BAKERY": 26.7,
+       "SWEET": 28.6,
+       "FRUIT": 18.1,
+       "FISH": 4.7,
+       "GARLIC": 15.2,
+       "SPICES": 36.9,
+       "COLD": 12.9,
+       "SOUR": 13.4,
+       "BURNT": 17.5,
+       "ACID": 6.8,
+       "WARM": 25.2,
+       "MUSKY": 23.2,
+       "SWEATY": 7.2,
+       "AMMONIA/URINOUS": 22.0,
+       "DECAYED": 1.0,
+       "WOOD": 6.3,
+       "GRASS": 8.0,
+       "FLOWER": 32.0,
+       "CHEMICAL": 28.5
+      }
+     }
+    ],
+    "n_stimuli": 2,
+    "n_raters": 54,
+    "pleasantness": 64.7,
+    "intensity": 67.5,
+    "familiarity": 66.6,
+    "descriptors": {
+     "SPICES": 37.5,
+     "BAKERY": 34.5,
+     "SWEET": 32.7,
+     "EDIBLE": 31.6,
+     "FLOWER": 29.1,
+     "CHEMICAL": 28.5,
+     "AMMONIA/URINOUS": 28.0,
+     "COLD": 26.1,
+     "WARM": 25.0,
+     "MUSKY": 20.8,
+     "SOUR": 20.6,
+     "FRUIT": 20.5,
+     "BURNT": 15.4,
+     "ACID": 13.8,
+     "DECAYED": 13.2,
+     "WOOD": 13.2,
+     "SWEATY": 10.1,
+     "GARLIC": 8.6,
+     "GRASS": 5.7,
+     "FISH": 2.9
+    },
+    "top_descriptors": [
+     {
+      "term": "SPICES",
+      "score": 37.5
+     },
+     {
+      "term": "BAKERY",
+      "score": 34.5
+     },
+     {
+      "term": "SWEET",
+      "score": 32.7
+     },
+     {
+      "term": "EDIBLE",
+      "score": 31.6
+     },
+     {
+      "term": "FLOWER",
+      "score": 29.1
+     },
+     {
+      "term": "CHEMICAL",
+      "score": 28.5
+     }
+    ]
+   },
+   "dravnieks_1985": {
+    "cid": 3314,
+    "n_stimuli": 1,
+    "n_descriptors": 146,
+    "stimuli": [
+     {
+      "stimulus": "Eugenol_high",
+      "concentration": "high",
+      "top": [
+       {
+        "term": "CLOVE",
+        "use": 63.6,
+        "applicability": 56.1
+       },
+       {
+        "term": "SPICY",
+        "use": 51.7,
+        "applicability": 40.5
+       },
+       {
+        "term": "FRAGRANT",
+        "use": 49.1,
+        "applicability": 33.6
+       },
+       {
+        "term": "AROMATIC",
+        "use": 43.0,
+        "applicability": 31.5
+       },
+       {
+        "term": "SWEET",
+        "use": 37.1,
+        "applicability": 25.9
+       },
+       {
+        "term": "CINNAMON",
+        "use": 33.6,
+        "applicability": 22.2
+       },
+       {
+        "term": "LIGHT",
+        "use": 24.2,
+        "applicability": 15.3
+       },
+       {
+        "term": "PERFUMERY",
+        "use": 18.9,
+        "applicability": 12.0
+       }
+      ]
+     }
+    ],
+    "top": [
+     {
+      "term": "CLOVE",
+      "use": 63.6,
+      "term_ko": "정향"
+     },
+     {
+      "term": "SPICY",
+      "use": 51.7,
+      "term_ko": "스파이시"
+     },
+     {
+      "term": "FRAGRANT",
+      "use": 49.1,
+      "term_ko": "향기"
+     },
+     {
+      "term": "AROMATIC",
+      "use": 43.0,
+      "term_ko": "아로마"
+     },
+     {
+      "term": "SWEET",
+      "use": 37.1,
+      "term_ko": "단맛"
+     },
+     {
+      "term": "CINNAMON",
+      "use": 33.6,
+      "term_ko": "시나몬"
+     },
+     {
+      "term": "LIGHT",
+      "use": 24.2,
+      "term_ko": "가벼움"
+     },
+     {
+      "term": "PERFUMERY",
+      "use": 18.9,
+      "term_ko": "향수"
+     }
+    ]
+   },
+   "mainland_2015": {
+    "cid": 3314,
+    "n_receptors_tested": 429,
+    "receptors": [
+     {
+      "gene": "OR10G3",
+      "variants": [
+       "S73G"
+      ],
+      "secondary": true,
+      "dose_response": false,
+      "ec50_log": null
+     },
+     {
+      "gene": "OR1A1",
+      "variants": [
+       "V233M"
+      ],
+      "secondary": true,
+      "dose_response": false,
+      "ec50_log": null
+     },
+     {
+      "gene": "OR2J2",
+      "variants": [
+       "T111A"
+      ],
+      "secondary": true,
+      "dose_response": false,
+      "ec50_log": null
+     },
+     {
+      "gene": "OR2W1",
+      "variants": [
+       "D296N"
+      ],
+      "secondary": true,
+      "dose_response": false,
+      "ec50_log": null
+     },
+     {
+      "gene": "OR4D1",
+      "variants": [
+       "R54Q"
+      ],
+      "secondary": true,
+      "dose_response": false,
+      "ec50_log": null
+     },
+     {
+      "gene": "OR4D10",
+      "variants": [],
+      "secondary": true,
+      "dose_response": false,
+      "ec50_log": null
+     },
+     {
+      "gene": "OR4F17",
+      "variants": [],
+      "secondary": true,
+      "dose_response": false,
+      "ec50_log": null
+     },
+     {
+      "gene": "OR4K5",
+      "variants": [],
+      "secondary": true,
+      "dose_response": false,
+      "ec50_log": null
+     },
+     {
+      "gene": "OR4N5",
+      "variants": [],
+      "secondary": true,
+      "dose_response": false,
+      "ec50_log": null
+     },
+     {
+      "gene": "OR4Q3",
+      "variants": [],
+      "secondary": true,
+      "dose_response": false,
+      "ec50_log": null
+     },
+     {
+      "gene": "OR52K1",
+      "variants": [],
+      "secondary": true,
+      "dose_response": false,
+      "ec50_log": null
+     },
+     {
+      "gene": "OR56A3",
+      "variants": [
+       "M51T"
+      ],
+      "secondary": true,
+      "dose_response": false,
+      "ec50_log": null
+     },
+     {
+      "gene": "OR5P3",
+      "variants": [],
+      "secondary": true,
+      "dose_response": false,
+      "ec50_log": null
+     },
+     {
+      "gene": "OR6C65",
+      "variants": [],
+      "secondary": true,
+      "dose_response": false,
+      "ec50_log": null
+     },
+     {
+      "gene": "OR8D1",
+      "variants": [],
+      "secondary": true,
+      "dose_response": false,
+      "ec50_log": null
+     }
+    ],
+    "n_active": 15
+   }
+  },
+  "cinnamaldehyde": {
+   "dravnieks_1985": {
+    "cid": 637511,
+    "n_stimuli": 1,
+    "n_descriptors": 146,
+    "stimuli": [
+     {
+      "stimulus": "CinnamicAldehyde_high",
+      "concentration": "high",
+      "top": [
+       {
+        "term": "CINNAMON",
+        "use": 75.7,
+        "applicability": 69.1
+       },
+       {
+        "term": "FRAGRANT",
+        "use": 63.6,
+        "applicability": 47.2
+       },
+       {
+        "term": "SPICY",
+        "use": 60.7,
+        "applicability": 52.4
+       },
+       {
+        "term": "SWEET",
+        "use": 56.4,
+        "applicability": 43.2
+       },
+       {
+        "term": "AROMATIC",
+        "use": 53.6,
+        "applicability": 42.5
+       },
+       {
+        "term": "WARM",
+        "use": 34.3,
+        "applicability": 24.9
+       },
+       {
+        "term": "CLOVE",
+        "use": 33.6,
+        "applicability": 23.7
+       },
+       {
+        "term": "HEAVY",
+        "use": 23.6,
+        "applicability": 17.7
+       }
+      ]
+     }
+    ],
+    "top": [
+     {
+      "term": "CINNAMON",
+      "use": 75.7,
+      "term_ko": "시나몬"
+     },
+     {
+      "term": "FRAGRANT",
+      "use": 63.6,
+      "term_ko": "향기"
+     },
+     {
+      "term": "SPICY",
+      "use": 60.7,
+      "term_ko": "스파이시"
+     },
+     {
+      "term": "SWEET",
+      "use": 56.4,
+      "term_ko": "단맛"
+     },
+     {
+      "term": "AROMATIC",
+      "use": 53.6,
+      "term_ko": "아로마"
+     },
+     {
+      "term": "WARM",
+      "use": 34.3,
+      "term_ko": "따뜻함"
+     },
+     {
+      "term": "CLOVE",
+      "use": 33.6,
+      "term_ko": "정향"
+     },
+     {
+      "term": "HEAVY",
+      "use": 23.6,
+      "term_ko": "무거움"
+     }
+    ]
+   }
+  },
+  "benzyl benzoate": {
+   "keller_2016": {
+    "cid": 2345,
+    "stimuli": [
+     {
+      "stimulus": 249,
+      "concentration": "0.1",
+      "n_raters": 49,
+      "pleasantness": 46.9,
+      "intensity": 53.3,
+      "familiarity": 38.5,
+      "descriptors": {
+       "EDIBLE": 18.0,
+       "BAKERY": 1.0,
+       "SWEET": 34.1,
+       "FRUIT": 33.1,
+       "FISH": 27.2,
+       "GARLIC": 16.0,
+       "SPICES": 29.0,
+       "COLD": 30.6,
+       "SOUR": 29.1,
+       "BURNT": 18.9,
+       "ACID": 22.8,
+       "WARM": 21.1,
+       "MUSKY": 37.6,
+       "SWEATY": 9.4,
+       "AMMONIA/URINOUS": 20.2,
+       "DECAYED": 40.0,
+       "WOOD": 17.9,
+       "GRASS": 26.7,
+       "FLOWER": 34.1,
+       "CHEMICAL": 37.5
+      }
+     },
+     {
+      "stimulus": 250,
+      "concentration": "0.001",
+      "n_raters": 25,
+      "pleasantness": 48.6,
+      "intensity": 19.8,
+      "familiarity": 42.4,
+      "descriptors": {
+       "EDIBLE": 8.5,
+       "BAKERY": 13.0,
+       "SWEET": 12.6,
+       "FRUIT": 1.0,
+       "FISH": 4.0,
+       "GARLIC": 15.8,
+       "SPICES": 3.3,
+       "COLD": 19.5,
+       "SOUR": 33.6,
+       "BURNT": 16.8,
+       "ACID": 13.7,
+       "WARM": 30.2,
+       "MUSKY": 9.6,
+       "SWEATY": 6.8,
+       "AMMONIA/URINOUS": 11.7,
+       "DECAYED": 30.3,
+       "WOOD": 7.7,
+       "GRASS": 1.0,
+       "FLOWER": 2.0,
+       "CHEMICAL": 27.1
+      }
+     }
+    ],
+    "n_stimuli": 2,
+    "n_raters": 49,
+    "pleasantness": 47.8,
+    "intensity": 36.5,
+    "familiarity": 40.5,
+    "descriptors": {
+     "DECAYED": 35.1,
+     "CHEMICAL": 32.3,
+     "SOUR": 31.4,
+     "WARM": 25.6,
+     "COLD": 25.1,
+     "MUSKY": 23.6,
+     "SWEET": 23.4,
+     "ACID": 18.2,
+     "FLOWER": 18.1,
+     "BURNT": 17.9,
+     "FRUIT": 17.1,
+     "SPICES": 16.1,
+     "GARLIC": 15.9,
+     "AMMONIA/URINOUS": 15.9,
+     "FISH": 15.6,
+     "GRASS": 13.8,
+     "EDIBLE": 13.2,
+     "WOOD": 12.8,
+     "SWEATY": 8.1,
+     "BAKERY": 7.0
+    },
+    "top_descriptors": [
+     {
+      "term": "DECAYED",
+      "score": 35.1
+     },
+     {
+      "term": "CHEMICAL",
+      "score": 32.3
+     },
+     {
+      "term": "SOUR",
+      "score": 31.4
+     },
+     {
+      "term": "WARM",
+      "score": 25.6
+     },
+     {
+      "term": "COLD",
+      "score": 25.1
+     },
+     {
+      "term": "MUSKY",
+      "score": 23.6
+     }
+    ]
+   }
+  },
+  "guaiacol": {
+   "keller_2016": {
+    "cid": 460,
+    "stimuli": [
+     {
+      "stimulus": 893,
+      "concentration": "1e-05",
+      "n_raters": 55,
+      "pleasantness": 39.7,
+      "intensity": 64.6,
+      "familiarity": 47.3,
+      "descriptors": {
+       "EDIBLE": 17.0,
+       "BAKERY": 18.3,
+       "SWEET": 23.5,
+       "FRUIT": 9.5,
+       "FISH": 18.4,
+       "GARLIC": 15.8,
+       "SPICES": 26.9,
+       "COLD": 25.2,
+       "SOUR": 21.4,
+       "BURNT": 24.1,
+       "ACID": 24.0,
+       "WARM": 22.2,
+       "MUSKY": 22.6,
+       "SWEATY": 17.6,
+       "AMMONIA/URINOUS": 15.0,
+       "DECAYED": 19.7,
+       "WOOD": 12.8,
+       "GRASS": 19.6,
+       "FLOWER": 24.3,
+       "CHEMICAL": 38.4
+      }
+     },
+     {
+      "stimulus": 894,
+      "concentration": "1e-07",
+      "n_raters": 50,
+      "pleasantness": 38.9,
+      "intensity": 51.7,
+      "familiarity": 41.8,
+      "descriptors": {
+       "EDIBLE": 32.5,
+       "BAKERY": 38.7,
+       "SWEET": 22.3,
+       "FRUIT": 23.0,
+       "FISH": 8.5,
+       "GARLIC": 33.4,
+       "SPICES": 25.5,
+       "COLD": 28.5,
+       "SOUR": 26.6,
+       "BURNT": 23.5,
+       "ACID": 24.8,
+       "WARM": 21.2,
+       "MUSKY": 34.9,
+       "SWEATY": 21.1,
+       "AMMONIA/URINOUS": 19.1,
+       "DECAYED": 29.3,
+       "WOOD": 20.6,
+       "GRASS": 17.4,
+       "FLOWER": 21.0,
+       "CHEMICAL": 27.7
+      }
+     }
+    ],
+    "n_stimuli": 2,
+    "n_raters": 55,
+    "pleasantness": 39.3,
+    "intensity": 58.1,
+    "familiarity": 44.5,
+    "descriptors": {
+     "CHEMICAL": 33.0,
+     "MUSKY": 28.8,
+     "BAKERY": 28.5,
+     "COLD": 26.9,
+     "SPICES": 26.2,
+     "EDIBLE": 24.8,
+     "GARLIC": 24.6,
+     "DECAYED": 24.5,
+     "ACID": 24.4,
+     "SOUR": 24.0,
+     "BURNT": 23.8,
+     "SWEET": 22.9,
+     "FLOWER": 22.6,
+     "WARM": 21.7,
+     "SWEATY": 19.4,
+     "GRASS": 18.5,
+     "AMMONIA/URINOUS": 17.1,
+     "WOOD": 16.7,
+     "FRUIT": 16.2,
+     "FISH": 13.4
+    },
+    "top_descriptors": [
+     {
+      "term": "CHEMICAL",
+      "score": 33.0
+     },
+     {
+      "term": "MUSKY",
+      "score": 28.8
+     },
+     {
+      "term": "BAKERY",
+      "score": 28.5
+     },
+     {
+      "term": "COLD",
+      "score": 26.9
+     },
+     {
+      "term": "SPICES",
+      "score": 26.2
+     },
+     {
+      "term": "EDIBLE",
+      "score": 24.8
+     }
+    ]
+   },
+   "dravnieks_1985": {
+    "cid": 460,
+    "n_stimuli": 1,
+    "n_descriptors": 146,
+    "stimuli": [
+     {
+      "stimulus": "Guaiacol_high",
+      "concentration": "high",
+      "top": [
+       {
+        "term": "BURNT,SMOKY",
+        "use": 56.8,
+        "applicability": 43.5
+       },
+       {
+        "term": "WOODY, RESINOUS",
+        "use": 44.6,
+        "applicability": 29.5
+       },
+       {
+        "term": "MEDICINAL",
+        "use": 43.2,
+        "applicability": 30.7
+       },
+       {
+        "term": "HEAVY",
+        "use": 33.8,
+        "applicability": 23.8
+       },
+       {
+        "term": "CHEMICAL",
+        "use": 31.8,
+        "applicability": 22.1
+       },
+       {
+        "term": "AROMATIC",
+        "use": 29.1,
+        "applicability": 20.4
+       },
+       {
+        "term": "DISINFECTANT, CARBOLIC",
+        "use": 25.0,
+        "applicability": 15.9
+       },
+       {
+        "term": "ETHERISH, ANAESTHETIC",
+        "use": 23.6,
+        "applicability": 15.3
+       }
+      ]
+     }
+    ],
+    "top": [
+     {
+      "term": "BURNT,SMOKY",
+      "use": 56.8,
+      "term_ko": ""
+     },
+     {
+      "term": "WOODY, RESINOUS",
+      "use": 44.6,
+      "term_ko": "우디·레지너스"
+     },
+     {
+      "term": "MEDICINAL",
+      "use": 43.2,
+      "term_ko": "약품"
+     },
+     {
+      "term": "HEAVY",
+      "use": 33.8,
+      "term_ko": "무거움"
+     },
+     {
+      "term": "CHEMICAL",
+      "use": 31.8,
+      "term_ko": "화학적"
+     },
+     {
+      "term": "AROMATIC",
+      "use": 29.1,
+      "term_ko": "아로마"
+     },
+     {
+      "term": "DISINFECTANT, CARBOLIC",
+      "use": 25.0,
+      "term_ko": ""
+     },
+     {
+      "term": "ETHERISH, ANAESTHETIC",
+      "use": 23.6,
+      "term_ko": ""
+     }
+    ]
+   },
+   "mainland_2015": {
+    "cid": 460,
+    "n_receptors_tested": 513,
+    "receptors": [
+     {
+      "gene": "OR10G7",
+      "variants": [],
+      "secondary": true,
+      "dose_response": true,
+      "ec50_log": -6.0
+     },
+     {
+      "gene": "OR1A1",
+      "variants": [],
+      "secondary": true,
+      "dose_response": false,
+      "ec50_log": null
+     },
+     {
+      "gene": "OR2T11",
+      "variants": [
+       "C119R/Q309R"
+      ],
+      "secondary": true,
+      "dose_response": false,
+      "ec50_log": null
+     }
+    ],
+    "n_active": 3
+   }
+  },
+  "gamma-decalactone": {
+   "keller_2016": {
+    "cid": 12813,
+    "stimuli": [
+     {
+      "stimulus": 763,
+      "concentration": "1e-05",
+      "n_raters": 39,
+      "pleasantness": 61.4,
+      "intensity": 33.2,
+      "familiarity": 46.4,
+      "descriptors": {
+       "EDIBLE": 32.7,
+       "BAKERY": 64.0,
+       "SWEET": 29.2,
+       "FRUIT": 25.6,
+       "GARLIC": 53.0,
+       "SPICES": 41.6,
+       "COLD": 18.8,
+       "SOUR": 30.3,
+       "BURNT": 23.0,
+       "ACID": 28.0,
+       "WARM": 22.5,
+       "MUSKY": 18.8,
+       "AMMONIA/URINOUS": 26.5,
+       "DECAYED": 3.5,
+       "WOOD": 49.5,
+       "GRASS": 32.2,
+       "FLOWER": 27.2,
+       "CHEMICAL": 23.0
+      }
+     },
+     {
+      "stimulus": 764,
+      "concentration": "0.001",
+      "n_raters": 54,
+      "pleasantness": 64.9,
+      "intensity": 54.0,
+      "familiarity": 51.5,
+      "descriptors": {
+       "EDIBLE": 21.7,
+       "BAKERY": 22.8,
+       "SWEET": 42.3,
+       "FRUIT": 30.3,
+       "FISH": 1.0,
+       "GARLIC": 5.0,
+       "SPICES": 22.5,
+       "COLD": 21.3,
+       "SOUR": 29.5,
+       "BURNT": 36.0,
+       "ACID": 21.5,
+       "WARM": 23.7,
+       "MUSKY": 17.6,
+       "SWEATY": 27.0,
+       "AMMONIA/URINOUS": 13.5,
+       "DECAYED": 2.0,
+       "WOOD": 30.0,
+       "GRASS": 12.0,
+       "FLOWER": 24.1,
+       "CHEMICAL": 23.8
+      }
+     }
+    ],
+    "n_stimuli": 2,
+    "n_raters": 54,
+    "pleasantness": 63.2,
+    "intensity": 43.6,
+    "familiarity": 49.0,
+    "descriptors": {
+     "BAKERY": 43.4,
+     "WOOD": 39.8,
+     "SWEET": 35.8,
+     "SPICES": 32.0,
+     "SOUR": 29.9,
+     "BURNT": 29.5,
+     "GARLIC": 29.0,
+     "FRUIT": 28.0,
+     "EDIBLE": 27.2,
+     "SWEATY": 27.0,
+     "FLOWER": 25.6,
+     "ACID": 24.8,
+     "CHEMICAL": 23.4,
+     "WARM": 23.1,
+     "GRASS": 22.1,
+     "COLD": 20.1,
+     "AMMONIA/URINOUS": 20.0,
+     "MUSKY": 18.2,
+     "DECAYED": 2.8,
+     "FISH": 1.0
+    },
+    "top_descriptors": [
+     {
+      "term": "BAKERY",
+      "score": 43.4
+     },
+     {
+      "term": "WOOD",
+      "score": 39.8
+     },
+     {
+      "term": "SWEET",
+      "score": 35.8
+     },
+     {
+      "term": "SPICES",
+      "score": 32.0
+     },
+     {
+      "term": "SOUR",
+      "score": 29.9
+     },
+     {
+      "term": "BURNT",
+      "score": 29.5
+     }
+    ]
+   }
+  },
+  "cis-3-hexen-1-ol": {
+   "keller_2016": {
+    "cid": 5281167,
+    "stimuli": [
+     {
+      "stimulus": 907,
+      "concentration": "0.001",
+      "n_raters": 55,
+      "pleasantness": 51.0,
+      "intensity": 81.9,
+      "familiarity": 69.6,
+      "descriptors": {
+       "EDIBLE": 35.8,
+       "BAKERY": 15.0,
+       "SWEET": 32.4,
+       "FRUIT": 30.5,
+       "FISH": 40.7,
+       "GARLIC": 16.2,
+       "SPICES": 13.0,
+       "COLD": 39.2,
+       "SOUR": 23.1,
+       "BURNT": 23.4,
+       "ACID": 8.0,
+       "WARM": 23.8,
+       "MUSKY": 23.8,
+       "SWEATY": 17.0,
+       "AMMONIA/URINOUS": 30.1,
+       "DECAYED": 21.2,
+       "WOOD": 19.6,
+       "GRASS": 23.0,
+       "FLOWER": 20.9,
+       "CHEMICAL": 13.4
+      }
+     },
+     {
+      "stimulus": 908,
+      "concentration": "1e-05",
+      "n_raters": 49,
+      "pleasantness": 60.0,
+      "intensity": 39.7,
+      "familiarity": 60.5,
+      "descriptors": {
+       "EDIBLE": 25.2,
+       "BAKERY": 34.5,
+       "SWEET": 20.7,
+       "FRUIT": 18.1,
+       "FISH": 1.0,
+       "GARLIC": 13.3,
+       "SPICES": 9.2,
+       "COLD": 21.8,
+       "SOUR": 13.9,
+       "BURNT": 11.8,
+       "ACID": 3.7,
+       "WARM": 11.4,
+       "MUSKY": 2.7,
+       "SWEATY": 11.2,
+       "AMMONIA/URINOUS": 1.0,
+       "DECAYED": 16.0,
+       "WOOD": 22.6,
+       "GRASS": 36.2,
+       "FLOWER": 34.9,
+       "CHEMICAL": 32.2
+      }
+     }
+    ],
+    "n_stimuli": 2,
+    "n_raters": 55,
+    "pleasantness": 55.5,
+    "intensity": 60.8,
+    "familiarity": 65.0,
+    "descriptors": {
+     "EDIBLE": 30.5,
+     "COLD": 30.5,
+     "GRASS": 29.6,
+     "FLOWER": 27.9,
+     "SWEET": 26.5,
+     "BAKERY": 24.8,
+     "FRUIT": 24.3,
+     "CHEMICAL": 22.8,
+     "WOOD": 21.1,
+     "FISH": 20.9,
+     "DECAYED": 18.6,
+     "SOUR": 18.5,
+     "BURNT": 17.6,
+     "WARM": 17.6,
+     "AMMONIA/URINOUS": 15.6,
+     "GARLIC": 14.8,
+     "SWEATY": 14.1,
+     "MUSKY": 13.2,
+     "SPICES": 11.1,
+     "ACID": 5.8
+    },
+    "top_descriptors": [
+     {
+      "term": "EDIBLE",
+      "score": 30.5
+     },
+     {
+      "term": "COLD",
+      "score": 30.5
+     },
+     {
+      "term": "GRASS",
+      "score": 29.6
+     },
+     {
+      "term": "FLOWER",
+      "score": 27.9
+     },
+     {
+      "term": "SWEET",
+      "score": 26.5
+     },
+     {
+      "term": "BAKERY",
+      "score": 24.8
+     }
+    ]
+   }
+  },
+  "methyl salicylate": {
+   "keller_2016": {
+    "cid": 4133,
+    "stimuli": [
+     {
+      "stimulus": 235,
+      "concentration": "0.001",
+      "n_raters": 55,
+      "pleasantness": 60.8,
+      "intensity": 71.9,
+      "familiarity": 63.9,
+      "descriptors": {
+       "EDIBLE": 33.9,
+       "BAKERY": 11.0,
+       "SWEET": 40.4,
+       "FRUIT": 15.0,
+       "FISH": 1.0,
+       "GARLIC": 1.0,
+       "SPICES": 27.8,
+       "COLD": 27.1,
+       "SOUR": 33.6,
+       "BURNT": 16.0,
+       "ACID": 23.2,
+       "WARM": 27.5,
+       "MUSKY": 4.0,
+       "SWEATY": 14.3,
+       "AMMONIA/URINOUS": 20.1,
+       "DECAYED": 26.7,
+       "WOOD": 4.7,
+       "GRASS": 27.8,
+       "FLOWER": 36.8,
+       "CHEMICAL": 30.7
+      }
+     },
+     {
+      "stimulus": 236,
+      "concentration": "1e-05",
+      "n_raters": 22,
+      "pleasantness": 56.7,
+      "intensity": 16.7,
+      "familiarity": 38.1,
+      "descriptors": {
+       "EDIBLE": 31.0,
+       "BAKERY": 29.0,
+       "SWEET": 18.7,
+       "FRUIT": 16.7,
+       "GARLIC": 45.0,
+       "SPICES": 18.0,
+       "COLD": 20.0,
+       "SOUR": 20.3,
+       "BURNT": 2.0,
+       "ACID": 12.0,
+       "WARM": 9.0,
+       "MUSKY": 56.7,
+       "AMMONIA/URINOUS": 19.5,
+       "DECAYED": 42.5,
+       "GRASS": 28.0,
+       "FLOWER": 66.5,
+       "CHEMICAL": 33.0
+      }
+     }
+    ],
+    "n_stimuli": 2,
+    "n_raters": 55,
+    "pleasantness": 58.8,
+    "intensity": 44.3,
+    "familiarity": 51.0,
+    "descriptors": {
+     "FLOWER": 51.6,
+     "DECAYED": 34.6,
+     "EDIBLE": 32.5,
+     "CHEMICAL": 31.9,
+     "MUSKY": 30.4,
+     "SWEET": 29.5,
+     "GRASS": 27.9,
+     "SOUR": 27.0,
+     "COLD": 23.6,
+     "GARLIC": 23.0,
+     "SPICES": 22.9,
+     "BAKERY": 20.0,
+     "AMMONIA/URINOUS": 19.8,
+     "WARM": 18.2,
+     "ACID": 17.6,
+     "FRUIT": 15.8,
+     "SWEATY": 14.3,
+     "BURNT": 9.0,
+     "WOOD": 4.7,
+     "FISH": 1.0
+    },
+    "top_descriptors": [
+     {
+      "term": "FLOWER",
+      "score": 51.6
+     },
+     {
+      "term": "DECAYED",
+      "score": 34.6
+     },
+     {
+      "term": "EDIBLE",
+      "score": 32.5
+     },
+     {
+      "term": "CHEMICAL",
+      "score": 31.9
+     },
+     {
+      "term": "MUSKY",
+      "score": 30.4
+     },
+     {
+      "term": "SWEET",
+      "score": 29.5
+     }
+    ]
+   },
+   "dravnieks_1985": {
+    "cid": 4133,
+    "n_stimuli": 1,
+    "n_descriptors": 146,
+    "stimuli": [
+     {
+      "stimulus": "Methylsalicylate_high",
+      "concentration": "high",
+      "top": [
+       {
+        "term": "MINTY, PEPPERMINT",
+        "use": 77.3,
+        "applicability": 65.6
+       },
+       {
+        "term": "FRAGRANT",
+        "use": 64.0,
+        "applicability": 49.9
+       },
+       {
+        "term": "AROMATIC",
+        "use": 56.7,
+        "applicability": 45.2
+       },
+       {
+        "term": "COOL,COOLING",
+        "use": 53.3,
+        "applicability": 41.6
+       },
+       {
+        "term": "SWEET",
+        "use": 46.0,
+        "applicability": 35.2
+       },
+       {
+        "term": "MEDICINAL",
+        "use": 36.7,
+        "applicability": 25.1
+       },
+       {
+        "term": "LIGHT",
+        "use": 34.0,
+        "applicability": 24.5
+       },
+       {
+        "term": "SPICY",
+        "use": 32.0,
+        "applicability": 20.9
+       }
+      ]
+     }
+    ],
+    "top": [
+     {
+      "term": "MINTY, PEPPERMINT",
+      "use": 77.3,
+      "term_ko": "민트"
+     },
+     {
+      "term": "FRAGRANT",
+      "use": 64.0,
+      "term_ko": "향기"
+     },
+     {
+      "term": "AROMATIC",
+      "use": 56.7,
+      "term_ko": "아로마"
+     },
+     {
+      "term": "COOL,COOLING",
+      "use": 53.3,
+      "term_ko": ""
+     },
+     {
+      "term": "SWEET",
+      "use": 46.0,
+      "term_ko": "단맛"
+     },
+     {
+      "term": "MEDICINAL",
+      "use": 36.7,
+      "term_ko": "약품"
+     },
+     {
+      "term": "LIGHT",
+      "use": 34.0,
+      "term_ko": "가벼움"
+     },
+     {
+      "term": "SPICY",
+      "use": 32.0,
+      "term_ko": "스파이시"
+     }
+    ]
+   },
+   "mainland_2015": {
+    "cid": 4133,
+    "n_receptors_tested": 513,
+    "receptors": [
+     {
+      "gene": "OR10G3",
+      "variants": [
+       "S73G"
+      ],
+      "secondary": true,
+      "dose_response": false,
+      "ec50_log": null
+     },
+     {
+      "gene": "OR1A1",
+      "variants": [
+       "V233M"
+      ],
+      "secondary": true,
+      "dose_response": false,
+      "ec50_log": null
+     },
+     {
+      "gene": "OR5P3",
+      "variants": [],
+      "secondary": true,
+      "dose_response": false,
+      "ec50_log": null
+     }
+    ],
+    "n_active": 3
+   }
+  }
+ }
+}

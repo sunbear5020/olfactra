@@ -40,7 +40,8 @@ AI가 향을 완벽히 예측하는 것이 아니라, **공개 분자·향조 �
 | **OLFACTRA ID** | 기분·계절·공간·스타일 → 탑/미들/베이스 아코드 추천, 근거와 안전 경고 함께 | `olfactra_core/recommender.py` |
 | **OLFACTRA STUDIO** | 제품 유형·총 용량·부향률 → 원료별 g/mL, 완성품 농도, 안전 상한 판정, 레시피 CSV/JSON/Excel | `olfactra_core/studio.py` |
 | **OLFACTRA ATLAS** | 유향·몰약·삼나무·소나무 피톤치드·편백·유자 등 22개 항목의 기원·문헌·분자·주의사항 | `olfactra_core/atlas.py` |
-| **OLFACTRA MOLECULE** | 43개 공개 향료 분자의 구조(SMILES)·분자량·작용기·향조 벡터, 유사도·조화 점수 | `olfactra_core/molecule.py` |
+| **OLFACTRA MOLECULE** | 43개 공개 향료 분자의 구조(SMILES)·분자량·작용기·향조 벡터, 유사도·조화 점수, **RDKit 3D 좌표와 후각 수용체 결합 모형** | `olfactra_core/molecule.py`, `structure3d.py`, `docking.py` |
+| **PYRFUME 연동** | Keller 2016 · Dravnieks 1985 · Mainland 2015 공개 후각 데이터를 PubChem CID로 매칭해 추천·분자 상세의 근거로 표시 | `olfactra_core/pyrfume.py`, `datasets/pyrfume_olfactra.json` |
 
 ### 설치와 실행
 
@@ -75,9 +76,13 @@ python -m pytest -q        # 63 tests
 ### 웹 워크벤치 (이 저장소의 `web/`)
 
 - **라이브**: <https://sunbear5020.github.io/olfactra/>
-- **이 저장소 안의 원본**: `web/index.html` · `web/styles.css` · `web/app.js` · `web/data.js`
+- **이 저장소 안의 원본**: `web/index.html` · `web/styles.css` · `web/app.js` · `web/mol3d.js` · `web/data.js`
   (라이브 사이트와 같은 파일입니다. `data.js`는 `tools/build_web_data.py`로 엔진 라이브러리에서
-  다시 만들 수 있습니다.)
+  다시 만들 수 있습니다. 3D 좌표와 도킹 포즈도 이때 RDKit으로 계산되어 함께 들어갑니다.)
+- **MOLECULE 탭의 3D 뷰어**: `mol3d.js` — 외부 라이브러리 없이 Canvas 2D로 그리는 분자
+  ball-and-stick과 7-TM 수용체 결합 장면. 드래그 회전·휠 확대·자동 회전·결합 애니메이션을
+  지원하고, 수소결합·소수성·π 접촉선과 거리(Å)를 표시합니다. **모식적 모델**이며 실제 결합
+  친화도가 아닙니다(NOTICE.md 3-bis 참고).
 
 설치 없이 내 컴퓨터에서 띄우려면:
 
@@ -189,14 +194,19 @@ folder `/web`.
 ```
 olfactra_core/
   molecule.py     # 43 public molecules, odour vectors, similarity, harmony, blend report
+  structure3d.py  # RDKit ETKDG/MMFF 3-D conformers, pharmacophore features
+  docking.py      # idealised class A 7-TM receptor pockets, schematic rigid-body poses
+  pyrfume.py      # bundled Pyrfume extract: Keller 2016 / Dravnieks 1985 / Mainland 2015
+  datasets/pyrfume_olfactra.json  # the committed, offline-reproducible data extract
   atlas.py        # 22 historical/forest entries with sources and cautions
   studio.py       # product types, dilution math, exposure-aware safety gate
   recommender.py  # 15 curated accords, interpretable tag scoring
   exporter.py     # CSV / JSON / multi-sheet Excel
   cli.py          # python -m olfactra_core ...
 api/server.py     # FastAPI
-tests/            # pytest suite (63 tests)
-tools/            # build_web_data.py — regenerates the web workbench data from this library
+tests/            # pytest suite (86 tests)
+tools/            # build_web_data.py — regenerates the web workbench data (incl. 3-D + poses)
+                  # build_pyrfume_bundle.py — re-downloads Pyrfume and rebuilds the dataset extract
 ```
 
 ### Licence

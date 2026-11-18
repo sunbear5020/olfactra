@@ -7,3 +7,7 @@ uvicorn>=0.29
 python-multipart>=0.0.9
 pandas>=2.0
 openpyxl>=3.1
+# 3-D conformers, structure drawings and receptor docking poses (build-time only).
+# The engine itself and the committed data.js do not need them at runtime.
+rdkit>=2023.9
+numpy>=1.24

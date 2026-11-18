@@ -20,12 +20,15 @@ __version__ = "0.1.0"
 __license__ = "MIT"
 __copyright__ = "Copyright (c) 2026 FEI · HEL Lab, Gyeongsang National University"
 
-from . import atlas, exporter, molecule, recommender, studio  # noqa: E402
+from . import atlas, docking, exporter, molecule, pyrfume, recommender, structure3d, studio  # noqa: E402
 
 __all__ = [
     "__version__",
     "atlas",
+    "docking",
     "molecule",
+    "pyrfume",
+    "structure3d",
     "studio",
     "recommender",
     "exporter",
