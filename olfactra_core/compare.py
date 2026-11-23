@@ -106,7 +106,8 @@ class Comparison:
         if abs(d["headroom_pct"]) >= 5:
             tighter = self.label_b if d["headroom_pct"] < 0 else self.label_a
             lines.append(
-                f"상한 여유분은 {self.label_b}가 {pb['headroom_pct']:.1f}%, {self.label_a}가 "
+                f"상한 여유분은 {self.label_b}{_josa(self.label_b, '이', '가')} "
+                f"{pb['headroom_pct']:.1f}%, {self.label_a}{_josa(self.label_a, '이', '가')} "
                 f"{pa['headroom_pct']:.1f}% — {tighter} 쪽이 상한에 더 가깝습니다 "
                 f"({abs(d['headroom_pct']):.1f}%p 차이)."
             )
@@ -181,6 +182,17 @@ class Comparison:
         }
 
 
+def _josa(word: str, with_final: str, without_final: str) -> str:
+    """Korean subject particle by the final consonant of the last syllable."""
+    w = str(word).strip()
+    if not w:
+        return without_final
+    code = ord(w[-1])
+    if not 0xAC00 <= code <= 0xD7A3:
+        return without_final
+    return with_final if (code - 0xAC00) % 28 else without_final
+
+
 def _status_ko(status: str) -> str:
     return {"ok": "적합", "caution": "주의", "over": "상한 초과"}.get(status, status)
 
@@ -241,6 +253,7 @@ def resolve_side(
     product_type: str | None = None,
     volume_ml: float = 50.0,
     load_pct: float | None = None,
+    fallback_label: str = "",
 ) -> tuple[studio.Formula, str]:
     """Turn a CLI/API spec into a formula.
 
@@ -256,7 +269,7 @@ def resolve_side(
     except KeyError:
         materials = parse_accord_text(key)
         formula = studio.formulate(product_type or "edp", volume_ml, load_pct, materials)
-        return formula, product_type or formula.product_type.name_ko
+        return formula, f"직접 배합 {fallback_label}".strip()
     formula = studio.formulate(
         product_type or accord.product_hint, volume_ml, load_pct, accord.materials
     )

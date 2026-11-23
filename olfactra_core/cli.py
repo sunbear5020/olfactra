@@ -152,8 +152,10 @@ def cmd_compare(args: argparse.Namespace) -> None:
     from . import recommender
 
     # a bare accord id keeps the preset's own product hint unless one is given
-    formula_a, label_a = compare.resolve_side(args.a, args.product_a, args.volume_a, args.load_a)
-    formula_b, label_b = compare.resolve_side(args.b, args.product_b, args.volume_b, args.load_b)
+    formula_a, label_a = compare.resolve_side(
+        args.a, args.product_a, args.volume_a, args.load_a, fallback_label="A")
+    formula_b, label_b = compare.resolve_side(
+        args.b, args.product_b, args.volume_b, args.load_b, fallback_label="B")
     if args.name_a:
         label_a = args.name_a
     if args.name_b:
