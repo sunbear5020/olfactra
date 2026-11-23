@@ -7,6 +7,7 @@
 - `molecules.csv` — the full 43-material library with CAS, SMILES and working ceilings
 - `atlas.csv` — the 22-entry scent-history archive
 
-The `.xlsx` files carry five sheets: `Formula`, `Carrier`, `Safety`, `NotePyr`,
-`Provenance`. The provenance sheet repeats the science and safety boundaries so a
+The `.xlsx` files carry six sheets: `Formula`, `Carrier`, `Safety`, `NotePyr`,
+`Methodology` (the indicator registry with evidence class, formula and boundary)
+and `Provenance`. The provenance sheet repeats the science and safety boundaries so a
 spreadsheet that travels away from this repository still carries them.

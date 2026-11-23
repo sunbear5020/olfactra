@@ -1,4 +1,4 @@
-# OLFACTRA Core 0.1.0 — runtime needs nothing outside the standard library.
+# OLFACTRA Core 0.2.0 — runtime needs nothing outside the standard library.
 # The lines below cover the API server, Excel export and the test suite.
 pytest>=8.0
 httpx>=0.27

@@ -4,6 +4,10 @@
 **FEI · HEL Lab, Gyeongsang National University**, released under the MIT License.
 `Copyright (c) 2026 FEI · HEL Lab, Gyeongsang National University`.
 
+**Version 0.2.0** — JSON schema `0.2.0`. This release adds the provenance
+registry (section 3-quater), calculated LogP/TPSA descriptors and the
+Markdown/Excel methodology reports.
+
 ## 1. Clean-room statement
 
 OLFACTRA was built from **public** chemistry, botany and history sources only:
@@ -174,7 +178,7 @@ number.
 
 If you use OLFACTRA in research, teaching or a product, please cite:
 
-> FEI · HEL Lab (2026). *OLFACTRA: The Intelligence of Scent (Core 0.1.0)*.
+> FEI · HEL Lab (2026). *OLFACTRA: The Intelligence of Scent (Core 0.2.0)*.
 > Gyeongsang National University. https://github.com/sunbear5020/olfactra (MIT)
 
 The bundled odour-perception data must be cited through its own sources as well
