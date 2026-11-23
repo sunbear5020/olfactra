@@ -24,7 +24,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from olfactra_core import (  # noqa: E402
-    __version__, atlas, docking, exporter, molecule, pyrfume, recommender, structure3d, studio,
+    __version__, atlas, descriptors, docking, exporter, molecule, provenance, pyrfume,
+    recommender, structure3d, studio,
 )
 
 #: text used in the UI and NOTICE — kept in one place so they cannot drift apart
@@ -105,6 +106,7 @@ def build(include_svg: bool = True, include_3d: bool = True, verbose: bool = Tru
     return {
         "meta": {
             "version": __version__,
+            "schema_version": exporter.SCHEMA_VERSION,
             "generated": date.today().isoformat(),
             "license": "MIT",
             "copyright": exporter.PROVENANCE["copyright"],
@@ -130,6 +132,7 @@ def build(include_svg: bool = True, include_3d: bool = True, verbose: bool = Tru
                     "혼합물의 향은 성분의 합이 아니므로, 완성된 아코드의 쾌적도를 예측하지 않습니다."
                 ),
             },
+            "descriptors": descriptors.as_dict(),
             "stats": {
                 "molecules": molecule.library_stats(),
                 "atlas": atlas.stats(),
@@ -141,6 +144,7 @@ def build(include_svg: bool = True, include_3d: bool = True, verbose: bool = Tru
                 "receptors": len(docking.RECEPTORS),
             },
         },
+        "provenance": provenance.as_dict(),
         "molecules": molecules,
         "accords": [a.as_dict() for a in recommender.accords()],
         "atlas": [e.as_dict() for e in atlas.timeline()],

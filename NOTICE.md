@@ -25,6 +25,9 @@ appear only as factual references; all trademarks remain with their owners.
 
 ## 2. Scientific boundary — read this before citing results
 
+> **0.2.0** labels every indicator `measured`, `derived` or `heuristic`; section
+> 3-quater describes that registry.
+
 - OLFACTRA **proposes candidate combinations** from public molecule and odour
   data. It does **not** predict how a blend will smell, how it will perform on
   skin, or how it will behave in a specific base.
@@ -124,6 +127,48 @@ as one reason line and as a per-material evidence table, and only when at least
 by itself, because **a blend is not the sum of its parts**: masking, synergy and
 adaptation make mixtures smell different from every component. An accord whose
 materials average 70/100 can smell worse, better, or simply different.
+
+## 3-quater. Provenance registry (0.2.0) — measured, derived, heuristic
+
+Every number OLFACTRA shows is registered in `olfactra_core/provenance.py` with
+three things a reader needs before quoting it:
+
+| Evidence class | Meaning | Examples |
+| --- | --- | --- |
+| **measured** | published in a dataset or public record, checkable at the DOI | PubChem identity; Keller 2016 pleasantness/intensity/familiarity; Dravnieks 1985 descriptors; Mainland 2015 receptor responses |
+| **derived** | computed from public inputs by a stated, reproducible method | dilution arithmetic (mL · g · % w/w); RDKit ETKDGv3 + MMFF94s conformers; Crippen LogP; Ertl TPSA; the hedonic prior |
+| **heuristic** | a curated or rule-based ranking aid with no measured target | odour-family weights; blend harmony; note assignment; volatility index; the safety working ceiling; the schematic docking fit |
+
+The registry carries each indicator's formula, inputs, references and **boundary**
+in one place, and it is the single source for the METHOD tab, the Markdown report
+appendix, the Excel `Methodology` sheet and `GET /api/provenance`. A heuristic
+labelled as a heuristic cannot be mistaken for a measurement, and an unmeasured
+molecule is never filled with an estimate.
+
+### Calculated LogP and TPSA
+
+`olfactra_core/datasets/descriptors_rdkit.json` is rebuilt from the public SMILES
+of each PubChem CID by `tools/build_descriptors.py`:
+
+- **LogP** — RDKit `Descriptors.MolLogP`, the Crippen (1988) atomic-contribution
+  method with Wildman–Crippen (1999) corrections.
+- **TPSA** — RDKit `rdMolDescriptors.CalcTPSA`, the Ertl, Rohde & Selzer (2000)
+  fragment method.
+
+Both are **estimates from a contribution model, not measurements**: no
+experimental partition coefficient, no vapour pressure. They describe the
+molecular character of a formula and let two formulas be compared; they do not
+predict how fast a blend evaporates or how it will smell. The committed file
+records the RDKit version and the method names so the values can be reproduced
+(`python tools/build_descriptors.py --check`).
+
+### Volatility is a heuristic, and vapour pressure is not used
+
+The volatility index on the MOLECULE map is `base(note) × clamp(170 / MW, 0.55, 1.20)`.
+No vapour-pressure dataset is bundled with this project, so **no vapour pressure
+or LogP term is used to estimate volatility**; the index only orders materials
+along the note axis. Vapour pressure is reported here as a limitation, not as a
+number.
 
 ## 4. Attribution and citation
 

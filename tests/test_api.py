@@ -110,3 +110,70 @@ def test_library_csv_endpoint():
     r = client.get("/api/library.csv", params={"kind": "molecules"})
     assert r.status_code == 200
     assert "smiles" in r.text
+
+
+# --------------------------------------------------------------------- v0.2.0
+def test_health_reports_the_schema_and_registry_size():
+    data = client.get("/api/health").json()
+    assert data["version"] == "0.2.0"
+    assert data["schema_version"] == "0.2.0"
+    assert data["indicators"] >= 12
+
+
+def test_provenance_endpoint_and_filters():
+    data = client.get("/api/provenance").json()
+    assert data["counts"]["measured"] >= 4
+    assert data["descriptors"]["count"] == 43
+    only = client.get("/api/provenance", params={"kind": "heuristic"}).json()
+    assert only["returned"] >= 3
+    assert all(i["kind"] == "heuristic" for i in only["indicators"])
+    studio_only = client.get("/api/provenance", params={"context": "STUDIO"}).json()
+    assert any(i["id"] == "safety_gate" for i in studio_only["indicators"])
+    assert client.get("/api/provenance", params={"kind": "guess"}).status_code == 422
+
+
+def test_descriptors_endpoint():
+    data = client.get("/api/descriptors").json()
+    assert data["count"] == 43
+    linalool = data["molecules"]["linalool"]
+    assert 2.0 < linalool["logp"] < 3.2
+    assert linalool["tpsa"] > 0
+    assert "Crippen" in data["methods"]["logp"]
+
+
+def test_recipe_markdown_download():
+    body = {
+        "product_type": "edp", "volume_ml": 50, "load_pct": 20,
+        "accord": {"linalool": 60, "cedrol": 40},
+    }
+    r = client.post("/api/recipe", params={"fmt": "md"}, json=body)
+    assert r.status_code == 200
+    assert r.headers["content-type"].startswith("text/markdown")
+    assert r.text.startswith("# OLFACTRA 배합 보고서")
+    assert "## 5. 방법론·출처·경계" in r.text
+
+
+def test_compare_endpoint_json_and_markdown():
+    body = {
+        "a": {"product_type": "reed_diffuser", "volume_ml": 100,
+              "accord": {"alpha-pinene": 60, "cedrol": 40}, "label": "디퓨저 A"},
+        "b": {"product_type": "edp", "volume_ml": 100,
+              "accord": {"alpha-pinene": 60, "cedrol": 40}, "label": "EDP B"},
+    }
+    data = client.post("/api/compare", json=body).json()
+    assert data["schema_version"] == "0.2.0"
+    assert data["labels"] == {"a": "디퓨저 A", "b": "EDP B"}
+    assert data["a"]["profile"]["headroom_pct"] > data["b"]["profile"]["headroom_pct"]
+    assert data["summary"]
+
+    md = client.post("/api/compare", params={"fmt": "md"}, json=body)
+    assert md.status_code == 200
+    assert "| 판정 |" in md.text
+
+
+def test_compare_endpoint_rejects_bad_molecule():
+    body = {
+        "a": {"accord": {"unobtainium": 100}},
+        "b": {"accord": {"linalool": 100}},
+    }
+    assert client.post("/api/compare", json=body).status_code == 422

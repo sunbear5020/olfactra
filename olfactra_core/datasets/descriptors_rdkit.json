@@ -1,0 +1,401 @@
+{
+ "schema_version": "0.2.0",
+ "generated": "2026-11-23",
+ "source": "computed from the public SMILES of each PubChem CID, locally",
+ "tool": "RDKit 2026.09.2",
+ "methods": {
+  "logp": "RDKit Descriptors.MolLogP — Crippen (1988) atomic contributions, Wildman & Crippen (1999) corrections",
+  "tpsa": "RDKit rdMolDescriptors.CalcTPSA — Ertl, Rohde & Selzer (2000) fragment contributions",
+  "hbd_hba": "RDKit CalcNumHBD / CalcNumHBA — Lipinski donor/acceptor definition (N, O, NH, OH)",
+  "rotb": "RDKit CalcNumRotatableBonds — non-terminal single bonds, amide bonds excluded"
+ },
+ "molecules": {
+  "alpha-pinene": {
+   "cid": 6654,
+   "smiles": "CC1=CCC2CC1C2(C)C",
+   "logp": 3.0,
+   "tpsa": 0.0,
+   "hbd": 0,
+   "hba": 0,
+   "rotb": 0
+  },
+  "beta-pinene": {
+   "cid": 14896,
+   "smiles": "CC1(C2CCC(=C)C1C2)C",
+   "logp": 3.0,
+   "tpsa": 0.0,
+   "hbd": 0,
+   "hba": 0,
+   "rotb": 0
+  },
+  "limonene": {
+   "cid": 22311,
+   "smiles": "CC1=CCC(CC1)C(=C)C",
+   "logp": 3.31,
+   "tpsa": 0.0,
+   "hbd": 0,
+   "hba": 0,
+   "rotb": 1
+  },
+  "myrcene": {
+   "cid": 31253,
+   "smiles": "CC(=CCCC(=C)C=C)C",
+   "logp": 3.48,
+   "tpsa": 0.0,
+   "hbd": 0,
+   "hba": 0,
+   "rotb": 4
+  },
+  "alpha-terpinene": {
+   "cid": 7462,
+   "smiles": "CC1=CC=C(CC1)C(C)C",
+   "logp": 3.31,
+   "tpsa": 0.0,
+   "hbd": 0,
+   "hba": 0,
+   "rotb": 1
+  },
+  "sabinene": {
+   "cid": 18818,
+   "smiles": "CC(C)C12CCC(=C)C1C2",
+   "logp": 3.0,
+   "tpsa": 0.0,
+   "hbd": 0,
+   "hba": 0,
+   "rotb": 1
+  },
+  "linalool": {
+   "cid": 6549,
+   "smiles": "CC(=CCCC(C)(C=C)O)C",
+   "logp": 2.67,
+   "tpsa": 20.23,
+   "hbd": 1,
+   "hba": 1,
+   "rotb": 4
+  },
+  "linalyl acetate": {
+   "cid": 8294,
+   "smiles": "CC(=CCCC(C)(C=C)OC(=O)C)C",
+   "logp": 3.24,
+   "tpsa": 26.3,
+   "hbd": 0,
+   "hba": 2,
+   "rotb": 5
+  },
+  "geraniol": {
+   "cid": 637566,
+   "smiles": "CC(=CCC/C(=C/CO)/C)C",
+   "logp": 2.67,
+   "tpsa": 20.23,
+   "hbd": 1,
+   "hba": 1,
+   "rotb": 4
+  },
+  "citronellol": {
+   "cid": 8842,
+   "smiles": "CC(CCC=C(C)C)CCO",
+   "logp": 2.75,
+   "tpsa": 20.23,
+   "hbd": 1,
+   "hba": 1,
+   "rotb": 5
+  },
+  "citral": {
+   "cid": 638011,
+   "smiles": "CC(=CCC/C(=C/C=O)/C)C",
+   "logp": 2.88,
+   "tpsa": 17.07,
+   "hbd": 0,
+   "hba": 1,
+   "rotb": 4
+  },
+  "alpha-terpineol": {
+   "cid": 17100,
+   "smiles": "CC1=CCC(CC1)C(C)(C)O",
+   "logp": 2.5,
+   "tpsa": 20.23,
+   "hbd": 1,
+   "hba": 1,
+   "rotb": 1
+  },
+  "terpinen-4-ol": {
+   "cid": 11230,
+   "smiles": "CC1=CCC(CC1)(C(C)C)O",
+   "logp": 2.5,
+   "tpsa": 20.23,
+   "hbd": 1,
+   "hba": 1,
+   "rotb": 1
+  },
+  "eucalyptol": {
+   "cid": 2758,
+   "smiles": "CC1(C2CCC(O1)(CC2)C)C",
+   "logp": 2.74,
+   "tpsa": 9.23,
+   "hbd": 0,
+   "hba": 1,
+   "rotb": 0
+  },
+  "camphor": {
+   "cid": 2537,
+   "smiles": "CC1(C2CCC1(C(=O)C2)C)C",
+   "logp": 2.4,
+   "tpsa": 17.07,
+   "hbd": 0,
+   "hba": 1,
+   "rotb": 0
+  },
+  "fenchone": {
+   "cid": 14525,
+   "smiles": "CC1(C2CCC(C2)(C1=O)C)C",
+   "logp": 2.4,
+   "tpsa": 17.07,
+   "hbd": 0,
+   "hba": 1,
+   "rotb": 0
+  },
+  "bornyl acetate": {
+   "cid": 93009,
+   "smiles": "CC(=O)O[C@@H]1C[C@@H]2CC[C@]1(C2(C)C)C",
+   "logp": 2.76,
+   "tpsa": 26.3,
+   "hbd": 0,
+   "hba": 2,
+   "rotb": 1
+  },
+  "beta-caryophyllene": {
+   "cid": 5281515,
+   "smiles": "C/C/1=C\\CCC(=C)[C@H]2CC([C@@H]2CC1)(C)C",
+   "logp": 4.73,
+   "tpsa": 0.0,
+   "hbd": 0,
+   "hba": 0,
+   "rotb": 0
+  },
+  "alpha-humulene": {
+   "cid": 5281520,
+   "smiles": "C/C/1=C\\CC(/C=C/C/C(=C/CC1)/C)(C)C",
+   "logp": 5.04,
+   "tpsa": 0.0,
+   "hbd": 0,
+   "hba": 0,
+   "rotb": 0
+  },
+  "alpha-santalol": {
+   "cid": 11085337,
+   "smiles": "C/C(=C/CC[C@@]1(C2C[C@H]3C1([C@H]3C2)C)C)/CO",
+   "logp": 3.39,
+   "tpsa": 20.23,
+   "hbd": 1,
+   "hba": 1,
+   "rotb": 4
+  },
+  "patchoulol": {
+   "cid": 442384,
+   "smiles": "C[C@H]1CCC2([C@@]3(C1CC(C2(C)C)CC3)C)O",
+   "logp": 3.61,
+   "tpsa": 20.23,
+   "hbd": 1,
+   "hba": 1,
+   "rotb": 0
+  },
+  "cedrol": {
+   "cid": 65575,
+   "smiles": "C[C@@H]1CC[C@@H]2[C@]13CC[C@@]([C@H](C3)C2(C)C)(C)O",
+   "logp": 3.61,
+   "tpsa": 20.23,
+   "hbd": 1,
+   "hba": 1,
+   "rotb": 0
+  },
+  "alpha-cedrene": {
+   "cid": 6431015,
+   "smiles": "C[C@@H]1CC[C@@H]2[C@]13CC=C([C@H](C3)C2(C)C)C",
+   "logp": 4.42,
+   "tpsa": 0.0,
+   "hbd": 0,
+   "hba": 0,
+   "rotb": 0
+  },
+  "alpha-copaene": {
+   "cid": 70678558,
+   "smiles": "CC1=CC[C@H]2[C@H]3C1[C@]2(CC[C@H]3C(C)C)C",
+   "logp": 4.27,
+   "tpsa": 0.0,
+   "hbd": 0,
+   "hba": 0,
+   "rotb": 1
+  },
+  "germacrene-d": {
+   "cid": 5317570,
+   "smiles": "C/C/1=C\\CCC(=C)/C=C/[C@@H](CC1)C(C)C",
+   "logp": 4.89,
+   "tpsa": 0.0,
+   "hbd": 0,
+   "hba": 0,
+   "rotb": 1
+  },
+  "delta-cadinene": {
+   "cid": 441005,
+   "smiles": "CC1=C[C@H]2[C@@H](CCC(=C2CC1)C)C(C)C",
+   "logp": 4.73,
+   "tpsa": 0.0,
+   "hbd": 0,
+   "hba": 0,
+   "rotb": 1
+  },
+  "alpha-bisabolol": {
+   "cid": 1549992,
+   "smiles": "CC1=CC[C@@H](CC1)[C@@](C)(CCC=C(C)C)O",
+   "logp": 4.23,
+   "tpsa": 20.23,
+   "hbd": 1,
+   "hba": 1,
+   "rotb": 4
+  },
+  "muscone": {
+   "cid": 7160826,
+   "smiles": "C[C@@H]1CCCCCCCCCCCCC(=O)C1",
+   "logp": 5.28,
+   "tpsa": 17.07,
+   "hbd": 0,
+   "hba": 1,
+   "rotb": 0
+  },
+  "benzyl acetate": {
+   "cid": 8785,
+   "smiles": "CC(=O)OCC1=CC=CC=C1",
+   "logp": 1.75,
+   "tpsa": 26.3,
+   "hbd": 0,
+   "hba": 2,
+   "rotb": 2
+  },
+  "phenylethyl alcohol": {
+   "cid": 6054,
+   "smiles": "C1=CC=C(C=C1)CCO",
+   "logp": 1.22,
+   "tpsa": 20.23,
+   "hbd": 1,
+   "hba": 1,
+   "rotb": 2
+  },
+  "cis-jasmone": {
+   "cid": 1549018,
+   "smiles": "CC/C=C\\CC1=C(CCC1=O)C",
+   "logp": 3.02,
+   "tpsa": 17.07,
+   "hbd": 0,
+   "hba": 1,
+   "rotb": 3
+  },
+  "beta-ionone": {
+   "cid": 638014,
+   "smiles": "CC1=C(C(CCC1)(C)C)/C=C/C(=O)C",
+   "logp": 3.66,
+   "tpsa": 17.07,
+   "hbd": 0,
+   "hba": 1,
+   "rotb": 2
+  },
+  "methyl anthranilate": {
+   "cid": 8635,
+   "smiles": "COC(=O)C1=CC=CC=C1N",
+   "logp": 1.06,
+   "tpsa": 52.32,
+   "hbd": 1,
+   "hba": 3,
+   "rotb": 1
+  },
+  "vanillin": {
+   "cid": 1183,
+   "smiles": "COC1=C(C=CC(=C1)C=O)O",
+   "logp": 1.21,
+   "tpsa": 46.53,
+   "hbd": 1,
+   "hba": 3,
+   "rotb": 2
+  },
+  "coumarin": {
+   "cid": 323,
+   "smiles": "C1=CC=C2C(=C1)C=CC(=O)O2",
+   "logp": 1.79,
+   "tpsa": 30.21,
+   "hbd": 0,
+   "hba": 2,
+   "rotb": 0
+  },
+  "eugenol": {
+   "cid": 3314,
+   "smiles": "COC1=C(C=CC(=C1)CC=C)O",
+   "logp": 2.13,
+   "tpsa": 29.46,
+   "hbd": 1,
+   "hba": 2,
+   "rotb": 3
+  },
+  "cinnamaldehyde": {
+   "cid": 637511,
+   "smiles": "C1=CC=C(C=C1)/C=C/C=O",
+   "logp": 1.9,
+   "tpsa": 17.07,
+   "hbd": 0,
+   "hba": 1,
+   "rotb": 2
+  },
+  "benzyl benzoate": {
+   "cid": 2345,
+   "smiles": "C1=CC=C(C=C1)COC(=O)C2=CC=CC=C2",
+   "logp": 3.04,
+   "tpsa": 26.3,
+   "hbd": 0,
+   "hba": 2,
+   "rotb": 3
+  },
+  "guaiacol": {
+   "cid": 460,
+   "smiles": "COC1=CC=CC=C1O",
+   "logp": 1.4,
+   "tpsa": 29.46,
+   "hbd": 1,
+   "hba": 2,
+   "rotb": 1
+  },
+  "gamma-decalactone": {
+   "cid": 12813,
+   "smiles": "CCCCCCC1CCC(=O)O1",
+   "logp": 2.66,
+   "tpsa": 26.3,
+   "hbd": 0,
+   "hba": 2,
+   "rotb": 5
+  },
+  "cis-3-hexen-1-ol": {
+   "cid": 5281167,
+   "smiles": "CC/C=C\\CCO",
+   "logp": 1.33,
+   "tpsa": 20.23,
+   "hbd": 1,
+   "hba": 1,
+   "rotb": 3
+  },
+  "hinokitiol": {
+   "cid": 3611,
+   "smiles": "CC(C)C1=CC(=O)C(=CC=C1)O",
+   "logp": 1.88,
+   "tpsa": 37.3,
+   "hbd": 1,
+   "hba": 2,
+   "rotb": 1
+  },
+  "methyl salicylate": {
+   "cid": 4133,
+   "smiles": "COC(=O)C1=CC=CC=C1O",
+   "logp": 1.18,
+   "tpsa": 46.53,
+   "hbd": 1,
+   "hba": 3,
+   "rotb": 1
+  }
+ }
+}

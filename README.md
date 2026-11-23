@@ -1,7 +1,8 @@
 # OLFACTRA
 
 **The Intelligence of Scent** · *From a molecule to a memory of a place.*
-**ID** (recommendation) · **STUDIO** (formulation) · **ATLAS** (history) · **MOLECULE** (chemistry)
+**ID** (recommendation) · **STUDIO** (formulation) · **COMPARE** (properties) · **ATLAS** (history) ·
+**MOLECULE** (chemistry) · **METHOD** (provenance)
 
 Clean-room, public-data, **MIT-licensed** fragrance intelligence by
 **FEI · HEL Lab, Gyeongsang National University**.
@@ -9,14 +10,17 @@ Clean-room, public-data, **MIT-licensed** fragrance intelligence by
 - Web workbench (browser only, no install): <https://sunbear5020.github.io/olfactra/>
 - Workbench source in this repository: [`web/`](web/) — the same files the live site serves
 - Python engine: this repository (`deploy/olfactra/`)
-- Version: **0.1.0 (OLFACTRA Core)** · 43 molecules · 22 atlas entries · 15 accords · 8 product types
+- Version: **0.2.0 (OLFACTRA Core)** · JSON schema `0.2.0` · 43 molecules · 22 atlas entries ·
+  15 accords · 8 product types · 15 documented indicators
 
 > **What OLFACTRA does and does not do.** It proposes *candidate* accords and
 > formulas from public molecule and odour data, and it checks a formula against
 > conservative working ceilings. It does **not** predict how a blend will smell,
 > and it does not replace sensory evaluation, GC-MS analysis or a cosmetics
 > safety assessment. Every number it prints is an argument to be tested, not a
-> verdict.
+> verdict — which is why 0.2.0 labels each one **measured**, **derived** or
+> **heuristic** and shows its formula, source and limit in the METHOD tab, the
+> Markdown/Excel reports and `/api/provenance`.
 
 ---
 
@@ -41,7 +45,10 @@ AI가 향을 완벽히 예측하는 것이 아니라, **공개 분자·향조 �
 | **OLFACTRA STUDIO** | 제품 유형·총 용량·부향률 → 원료별 g/mL, 완성품 농도, 안전 상한 판정, 레시피 CSV/JSON/Excel | `olfactra_core/studio.py` |
 | **OLFACTRA ATLAS** | 유향·몰약·삼나무·소나무 피톤치드·편백·유자 등 22개 항목의 기원·문헌·분자·주의사항 | `olfactra_core/atlas.py` |
 | **OLFACTRA MOLECULE** | 43개 공개 향료 분자의 구조(SMILES)·분자량·작용기·향조 벡터, 유사도·조화 점수, **RDKit 3D 좌표와 후각 수용체 결합 모형** | `olfactra_core/molecule.py`, `structure3d.py`, `docking.py` |
+| **OLFACTRA COMPARE** | 두 배합(또는 프리셋 A·B)의 노트 피라미드, 물성 분포(평균 분자량·LogP·TPSA), 안전 한도 여유분(headroom) 비교 | `olfactra_core/compare.py` |
+| **OLFACTRA METHOD** | 지표별 수식·근거·참고문헌·경계를 **측정/유도/휴리스틱**으로 구조화한 레지스트리 — 보고서·API·웹 패널이 같은 내용을 씀 | `olfactra_core/provenance.py` |
 | **PYRFUME 연동** | Keller 2016 · Dravnieks 1985 · Mainland 2015 공개 후각 데이터를 PubChem CID로 매칭해 추천·분자 상세의 근거로 표시 | `olfactra_core/pyrfume.py`, `datasets/pyrfume_olfactra.json` |
+| **유도 물성** | 공개 SMILES에서 계산한 LogP(Crippen)·TPSA(Ertl)와 H-bond/회전 결합 수 — 실측이 아닌 **유도** 값으로 표시 | `olfactra_core/descriptors.py`, `datasets/descriptors_rdkit.json` |
 
 ### 설치와 실행
 
@@ -56,6 +63,15 @@ python -m olfactra_core formulate --product edp --volume 50 --load 20 \
 python -m olfactra_core molecule --similar linalool --top 5
 python -m olfactra_core atlas --category forest
 python -m olfactra_core demo --out olfactra-demo      # 예시 레시피 3종 × 3포맷
+
+# v0.2.0 — 보고서·비교·출처
+python -m olfactra_core formulate --product edp --volume 50 --load 20 \
+    --accord "linalool=40,geraniol=25,phenylethyl alcohol=25,cedrol=10" --out report.md
+python -m olfactra_core compare --a forest-breath --b frankincense-rite --volume-a 100 --volume-b 100
+python -m olfactra_core compare --a "linalool=60,cedrol=40" --b "limonene=70,cedrol=30" \
+    --product-a edp --product-b reed_diffuser --out compare.md
+python -m olfactra_core provenance --kind heuristic
+python -m olfactra_core --version                     # olfactra 0.2.0
 ```
 
 로컬 API(FastAPI):
@@ -70,7 +86,7 @@ curl -X POST 'http://127.0.0.1:8010/api/formulate' -H 'Content-Type: application
 테스트:
 
 ```bash
-python -m pytest -q        # 63 tests
+python -m pytest -q        # 120 tests, ~10초 (오프라인 전용, 네트워크 불필요)
 ```
 
 ### 웹 워크벤치 (이 저장소의 `web/`)
@@ -79,6 +95,9 @@ python -m pytest -q        # 63 tests
 - **이 저장소 안의 원본**: `web/index.html` · `web/styles.css` · `web/app.js` · `web/mol3d.js` · `web/data.js`
   (라이브 사이트와 같은 파일입니다. `data.js`는 `tools/build_web_data.py`로 엔진 라이브러리에서
   다시 만들 수 있습니다. 3D 좌표와 도킹 포즈도 이때 RDKit으로 계산되어 함께 들어갑니다.)
+- **v0.2.0 워크벤치**: UI 버전 표기 `v0.2.0`, STUDIO의 **Markdown 보고서 / JSON(schema 0.2.0)**
+  다운로드, 배합 비교·물성 요약 카드, 그리고 모든 지표의 정의·출처·경계를 모은
+  **METHOD** 탭이 추가됐습니다. 3D 분자·수용체 결합 뷰어와 Pyrfume 연동은 그대로입니다.
 - **MOLECULE 탭의 3D 뷰어**: `mol3d.js` — 외부 라이브러리 없이 Canvas 2D로 그리는 분자
   ball-and-stick과 7-TM 수용체 결합 장면. 드래그 회전·휠 확대·자동 회전·결합 애니메이션을
   지원하고, 수소결합·소수성·π 접촉선과 거리(Å)를 표시합니다. **모식적 모델**이며 실제 결합
@@ -120,11 +139,25 @@ python3 -m http.server 8000
 - **상표·독점 포뮬러 일체 미포함.** 어떤 향수 회사의 레시피·캡티브 원료·
   기술자료도 사용하지 않았습니다.
 
+### 배합 비교가 하는 일
+
+`compare_formulas(formula_a, formula_b)`는 두 배합을 **같은 자**로 재서 다음을 나란히 놓습니다.
+
+- **노트 피라미드** — 탑/미들/베이스 비중과 그 차이(%p).
+- **물성 프로파일** — 향 농축액의 질량 가중 평균 분자량, 계산 LogP(Crippen), TPSA(Ertl),
+  범위(min–max), 고체 원료 비중. LogP·TPSA는 **유도** 값이며 실측도, 휘발성 대리값도 아닙니다.
+- **안전 여유분(headroom)** — 가장 빠듯한 원료의 `완성품 % w/w ÷ 적용 상한`과 남은 여유(%),
+  초과·주의 원료, 표시 대상 알레르겐.
+- **요약 문장** — 판정 차이, 여유분 차이, 노트 이동, 물성 이동, 알레르겐 변화를 사람이 읽는 문장으로.
+
 ### 로드맵
 
-1. **Core 0.1 (지금)** — 분자 라이브러리, 아코드 추천, 배합·안전 게이트, 아틀라스, 정적 웹 워크벤치, 로컬 API.
-2. **0.2** — GC-MS 피크 표 가져오기(공개 형식)·조성 매칭, 아코드 저장/버전 관리, 다국어(EN·JP) UI.
-3. **0.3** — 실험 설계 모듈(희석 계열·패널 척도), 공개 데이터셋 기반 향조 임베딩 실험, 기관용 배포 패키지.
+1. **Core 0.1** — 분자 라이브러리, 아코드 추천, 배합·안전 게이트, 아틀라스, 정적 웹 워크벤치, 로컬 API.
+2. **Core 0.2 (지금)** — 재현성 출처 레지스트리(측정/유도/휴리스틱), Markdown·JSON(schema 0.2.0)·Excel
+   Methodology 보고서, 배합 비교·물성 프로파일, 계산 LogP/TPSA, 워크벤치 v0.2(METHOD 탭),
+   도킹 탐색 벡터화(172 포즈 45초 → 2초, 결과 동일).
+3. **0.3** — GC-MS 피크 표 가져오기(공개 형식)·조성 매칭, 아코드 저장/버전 관리, 다국어(EN·JP) UI,
+   실험 설계 모듈(희석 계열·패널 척도).
 
 ### CI (GitHub Actions)
 
@@ -186,7 +219,10 @@ folder `/web`.
 | GET | `/api/accords` | the curated accord library |
 | GET | `/api/recommend` | `mood`, `season`, `space`, `style`, `limit` |
 | POST | `/api/formulate` | formula + per-material safety verdict |
-| POST | `/api/recipe` | same formula as CSV/JSON download |
+| POST | `/api/recipe?fmt=json\|csv\|md` | same formula as a JSON bundle, CSV or Markdown report |
+| POST | `/api/compare?fmt=json\|md` | two formulas side by side (notes, properties, headroom) |
+| GET | `/api/provenance` | indicator registry (`kind`, `context` filters) |
+| GET | `/api/descriptors` | derived LogP/TPSA/HBD/HBA/rotors and their method |
 | GET | `/api/library.csv` | molecules or atlas as CSV |
 
 ### Layout
@@ -197,7 +233,11 @@ olfactra_core/
   structure3d.py  # RDKit ETKDG/MMFF 3-D conformers, pharmacophore features
   docking.py      # idealised class A 7-TM receptor pockets, schematic rigid-body poses
   pyrfume.py      # bundled Pyrfume extract: Keller 2016 / Dravnieks 1985 / Mainland 2015
-  datasets/pyrfume_olfactra.json  # the committed, offline-reproducible data extract
+  descriptors.py  # calculated LogP / TPSA / H-bond counts, rebuilt from public SMILES
+  compare.py      # two formulas side by side: notes, property profile, safety headroom
+  provenance.py   # every indicator: formula, source, evidence class, boundary
+  datasets/pyrfume_olfactra.json   # the committed, offline-reproducible odour extract
+  datasets/descriptors_rdkit.json  # committed descriptor values + method + RDKit version
   atlas.py        # 22 historical/forest entries with sources and cautions
   studio.py       # product types, dilution math, exposure-aware safety gate
   recommender.py  # 15 curated accords, interpretable tag scoring

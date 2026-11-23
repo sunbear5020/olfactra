@@ -92,3 +92,33 @@ def test_volatility_follows_note_class():
     base = lib.get("cedrol").volatility
     assert 0 <= base < top <= 1
     assert math.isclose(lib.get("camphor").volatility, lib.get("camphor").volatility)
+
+
+# ------------------------------------------------------------------ v0.2.0 descriptors
+def test_every_molecule_carries_calculated_logp_and_tpsa():
+    for m in lib.MOLECULES:
+        assert -2.0 <= m.logp <= 8.0, (m.id, m.logp)
+        assert 0.0 <= m.tpsa <= 120.0, (m.id, m.tpsa)
+    # known chemistry: hydrocarbons have no polar surface, alcohols do
+    assert lib.get("limonene").tpsa == 0.0
+    assert lib.get("linalool").tpsa > 15.0
+    assert lib.get("vanillin").logp > 0.5
+
+
+def test_descriptors_appear_in_the_serialised_molecule():
+    payload = lib.get("eugenol").as_dict()
+    assert "logp" in payload and "tpsa" in payload
+    assert payload["logp"] == pytest.approx(lib.get("eugenol").logp)
+
+
+def test_committed_descriptors_are_reproducible_with_rdkit():
+    """The committed values must be what RDKit computes from the public SMILES."""
+    pytest.importorskip("rdkit")
+    from rdkit import Chem
+    from rdkit.Chem import Descriptors, rdMolDescriptors
+
+    for m in lib.MOLECULES:
+        mol = Chem.MolFromSmiles(m.smiles)
+        assert mol is not None, m.id
+        assert abs(Descriptors.MolLogP(mol) - m.logp) < 0.01, m.id
+        assert abs(rdMolDescriptors.CalcTPSA(mol) - m.tpsa) < 0.01, m.id

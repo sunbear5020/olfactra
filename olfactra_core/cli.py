@@ -7,6 +7,9 @@ Examples
     python -m olfactra_core recommend --mood sleep --space bedroom --style floral
     python -m olfactra_core formulate --product edp --volume 50 --load 20 \
         --accord "linalool=40,geraniol=25,phenylethyl alcohol=25,cedrol=10" --out recipe.xlsx
+    python -m olfactra_core formulate --product edp --accord "linalool=60,cedrol=40" --out report.md
+    python -m olfactra_core compare --a forest-breath --b frankincense-rite --volume 100
+    python -m olfactra_core provenance --kind heuristic
 """
 from __future__ import annotations
 
@@ -14,7 +17,7 @@ import argparse
 import json
 from pathlib import Path
 
-from . import __version__, atlas, exporter, molecule, recommender, studio
+from . import __version__, atlas, compare, exporter, molecule, provenance, recommender, studio
 from .molecule import NOTE_LABELS_KO
 
 
@@ -111,7 +114,9 @@ def cmd_formulate(args: argparse.Namespace) -> None:
         print(f"# 조건에 맞는 아코드 '{picks[0].accord.name_ko}'로 계산합니다")
     formula = studio.formulate(args.product, args.volume, args.load, accord)
     if args.json:
-        print(json.dumps(formula.as_dict(), ensure_ascii=False, indent=2))
+        print(exporter.formula_to_json(formula))
+    elif args.md:
+        print(exporter.formula_to_markdown(formula), end="")
     else:
         print(f"{formula.product_type.name_ko} {formula.volume_ml:g} mL · 부향률 {formula.load_pct:g}% "
               f"(완성품 {formula.finished_load_pct_ww:.2f}% w/w) · 총 {formula.total_mass_g:.2f} g")
@@ -141,6 +146,66 @@ def cmd_demo(args: argparse.Namespace) -> None:
     (outdir / "molecules.csv").write_text(exporter.molecule_table_csv(), encoding="utf-8-sig")
     (outdir / "atlas.csv").write_text(exporter.atlas_table_csv(), encoding="utf-8-sig")
     print(f"demo files written to {outdir}")
+
+
+def cmd_compare(args: argparse.Namespace) -> None:
+    from . import recommender
+
+    # a bare accord id keeps the preset's own product hint unless one is given
+    formula_a, label_a = compare.resolve_side(args.a, args.product_a, args.volume_a, args.load_a)
+    formula_b, label_b = compare.resolve_side(args.b, args.product_b, args.volume_b, args.load_b)
+    if args.name_a:
+        label_a = args.name_a
+    if args.name_b:
+        label_b = args.name_b
+    result = compare.compare_formulas(formula_a, formula_b, label_a=label_a, label_b=label_b)
+
+    if args.json:
+        print(json.dumps(result.as_dict(), ensure_ascii=False, indent=2))
+    else:
+        pa, pb = result.profile("a"), result.profile("b")
+        print(f"A: {label_a} — {formula_a.product_type.name_ko} {formula_a.volume_ml:g} mL, "
+              f"부향률 {formula_a.load_pct:g}% · 판정 {formula_a.status}")
+        print(f"B: {label_b} — {formula_b.product_type.name_ko} {formula_b.volume_ml:g} mL, "
+              f"부향률 {formula_b.load_pct:g}% · 판정 {formula_b.status}")
+        print()
+        print(f"{'지표':24s} {'A':>12s} {'B':>12s}")
+        for key, label, digits in (
+            ("mean_mw", "평균 분자량", 2),
+            ("mean_logp", "평균 LogP", 2),
+            ("mean_tpsa", "평균 TPSA", 1),
+            ("finished_load_pct_ww", "완성품 부향률 %", 2),
+            ("headroom_pct", "상한 여유분 %", 1),
+        ):
+            print(f"{label:24s} {pa[key]:12.{digits}f} {pb[key]:12.{digits}f}")
+        for note in molecule.NOTES:
+            print(f"{NOTE_LABELS_KO[note] + ' 노트 %':24s} "
+                  f"{pa['note_share_pct'][note]:12.1f} {pb['note_share_pct'][note]:12.1f}")
+        print()
+        for line in result.summary_ko():
+            print(f"· {line}")
+    if args.out:
+        out = Path(args.out)
+        if out.suffix.lower() == ".json":
+            out.write_text(json.dumps(result.as_dict(), ensure_ascii=False, indent=2),
+                           encoding="utf-8")
+        else:
+            out.write_text(compare.markdown(result), encoding="utf-8")
+        print(f"저장: {out}")
+
+
+def cmd_provenance(args: argparse.Namespace) -> None:
+    items = provenance.by_kind(args.kind) if args.kind else list(provenance.indicators())
+    if args.json:
+        print(json.dumps([i.as_dict() for i in items], ensure_ascii=False, indent=2))
+        return
+    for ind in items:
+        print(f"[{provenance.KINDS[ind.kind]}] {ind.label_ko} ({ind.unit})")
+        print(f"    방법: {ind.formula}")
+        print(f"    근거: {ind.basis_ko}")
+        print(f"    경계: {ind.boundary_ko}")
+        print(f"    참고: {', '.join(r.label for r in ind.references)}")
+        print()
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -179,9 +244,30 @@ def build_parser() -> argparse.ArgumentParser:
     f.add_argument("--season", choices=sorted(recommender.SEASONS))
     f.add_argument("--space", choices=sorted(recommender.SPACES))
     f.add_argument("--style", choices=sorted(recommender.STYLES))
-    f.add_argument("--out", default=None, help="recipe.csv | recipe.json | recipe.xlsx")
-    f.add_argument("--json", action="store_true")
+    f.add_argument("--out", default=None, help="recipe.csv | .json | .xlsx | .md")
+    f.add_argument("--json", action="store_true", help="JSON bundle (schema 0.2.0)")
+    f.add_argument("--md", action="store_true", help="print the Markdown report")
     f.set_defaults(func=cmd_formulate)
+
+    c = sub.add_parser("compare", help="두 배합 비교 (노트·물성·안전 여유분)")
+    c.add_argument("--a", required=True, help="아코드 id 또는 'linalool=40,cedrol=60'")
+    c.add_argument("--b", required=True, help="아코드 id 또는 'linalool=40,cedrol=60'")
+    c.add_argument("--product-a", default=None)
+    c.add_argument("--product-b", default=None)
+    c.add_argument("--volume-a", type=float, default=50.0)
+    c.add_argument("--volume-b", type=float, default=50.0)
+    c.add_argument("--load-a", type=float, default=None)
+    c.add_argument("--load-b", type=float, default=None)
+    c.add_argument("--name-a", default=None)
+    c.add_argument("--name-b", default=None)
+    c.add_argument("--json", action="store_true")
+    c.add_argument("--out", default=None, help="compare.md | compare.json")
+    c.set_defaults(func=cmd_compare)
+
+    pv = sub.add_parser("provenance", help="지표 정의·출처·경계 레지스트리")
+    pv.add_argument("--kind", default=None, choices=sorted(provenance.KINDS))
+    pv.add_argument("--json", action="store_true")
+    pv.set_defaults(func=cmd_provenance)
 
     d = sub.add_parser("demo", help="예시 레시피 파일 생성")
     d.add_argument("--out", default="olfactra-demo")

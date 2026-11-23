@@ -11,6 +11,7 @@ user data is stored, and nothing is sent anywhere else.
 """
 from __future__ import annotations
 
+import json
 from typing import Any
 
 from fastapi import FastAPI, HTTPException, Query
@@ -18,7 +19,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import PlainTextResponse, Response
 from pydantic import BaseModel, Field
 
-from olfactra_core import __version__, atlas, exporter, molecule, recommender, studio
+from olfactra_core import (
+    __version__, atlas, compare, descriptors, exporter, molecule, provenance, recommender, studio,
+)
 
 app = FastAPI(
     title="OLFACTRA API",
@@ -39,6 +42,24 @@ app.add_middleware(
 )
 
 
+class FormulaSpec(BaseModel):
+    """One side of a comparison: a formulation request plus an optional name."""
+
+    product_type: str = Field("edp", description="reed_diffuser, room_spray, linen_mist, eau_de_cologne, edt, edp, body_oil, solid_perfume")
+    volume_ml: float = Field(50.0, gt=0, le=5000)
+    load_pct: float | None = Field(None, gt=0, le=100)
+    accord: dict[str, float] = Field(
+        default_factory=lambda: {"linalool": 40, "geraniol": 30, "cedrol": 30},
+        description="molecule_id -> share of the concentrate (%)",
+    )
+    label: str | None = Field(None, description="이름(선택). 없으면 제형 이름을 씁니다.")
+
+
+class CompareRequest(BaseModel):
+    a: FormulaSpec
+    b: FormulaSpec
+
+
 class FormulateRequest(BaseModel):
     product_type: str = Field("edp", description="reed_diffuser, room_spray, linen_mist, eau_de_cologne, edt, edp, body_oil, solid_perfume")
     volume_ml: float = Field(50.0, gt=0, le=5000)
@@ -54,11 +75,38 @@ def health() -> dict[str, Any]:
     return {
         "status": "ok",
         "version": __version__,
+        "schema_version": exporter.SCHEMA_VERSION,
         "license": "MIT",
+        "indicators": len(provenance.INDICATORS),
         "molecules": len(molecule.MOLECULES),
         "atlas_entries": len(atlas.ATLAS),
         "accords": len(recommender.ACCORDS),
         "product_types": len(studio.PRODUCT_TYPES),
+    }
+
+
+@app.get("/api/provenance")
+def get_provenance(kind: str | None = Query(None, pattern="^(measured|derived|heuristic)$"),
+                   context: str | None = None) -> dict[str, Any]:
+    """The indicator registry: formula, source, evidence class and boundary."""
+    payload = provenance.as_dict()
+    items = payload["indicators"]
+    if kind:
+        items = [i for i in items if i["kind"] == kind]
+    if context:
+        items = [i for i in items if context in i["used_in"]]
+    payload["indicators"] = items
+    payload["descriptors"] = descriptors.as_dict()
+    payload["returned"] = len(items)
+    return payload
+
+
+@app.get("/api/descriptors")
+def get_descriptors() -> dict[str, Any]:
+    """Derived molecular descriptors (Crippen LogP, Ertl TPSA) and their method."""
+    return {
+        **descriptors.as_dict(),
+        "molecules": {m.id: descriptors.profile(m.id) for m in molecule.MOLECULES},
     }
 
 
@@ -183,7 +231,7 @@ def formulate(req: FormulateRequest) -> dict:
 
 
 @app.post("/api/recipe")
-def recipe(req: FormulateRequest, fmt: str = Query("json", pattern="^(csv|json)$")) -> Response:
+def recipe(req: FormulateRequest, fmt: str = Query("json", pattern="^(csv|json|md)$")) -> Response:
     try:
         formula = studio.formulate(req.product_type, req.volume_ml, req.load_pct, req.accord)
     except (KeyError, ValueError) as exc:
@@ -194,11 +242,39 @@ def recipe(req: FormulateRequest, fmt: str = Query("json", pattern="^(csv|json)$
             media_type="text/csv; charset=utf-8",
             headers={"Content-Disposition": 'attachment; filename="olfactra-recipe.csv"'},
         )
+    if fmt == "md":
+        return PlainTextResponse(
+            exporter.formula_to_markdown(formula),
+            media_type="text/markdown; charset=utf-8",
+            headers={"Content-Disposition": 'attachment; filename="olfactra-report.md"'},
+        )
     return Response(
         exporter.formula_to_json(formula),
         media_type="application/json",
         headers={"Content-Disposition": 'attachment; filename="olfactra-recipe.json"'},
     )
+
+
+@app.post("/api/compare")
+def compare_formulas(req: CompareRequest, fmt: str = Query("json", pattern="^(json|md)$")) -> Response:
+    """Compare two formulas: note pyramid, property profile and safety headroom."""
+    try:
+        a = studio.formulate(req.a.product_type, req.a.volume_ml, req.a.load_pct, req.a.accord)
+        b = studio.formulate(req.b.product_type, req.b.volume_ml, req.b.load_pct, req.b.accord)
+    except (KeyError, ValueError) as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+    result = compare.compare_formulas(
+        a, b,
+        label_a=req.a.label or a.product_type.name_ko,
+        label_b=req.b.label or b.product_type.name_ko,
+    )
+    if fmt == "md":
+        return PlainTextResponse(
+            compare.markdown(result),
+            media_type="text/markdown; charset=utf-8",
+            headers={"Content-Disposition": 'attachment; filename="olfactra-compare.md"'},
+        )
+    return Response(json.dumps(result.as_dict(), ensure_ascii=False), media_type="application/json")
 
 
 @app.get("/api/library.csv", response_class=PlainTextResponse)

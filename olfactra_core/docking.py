@@ -32,6 +32,7 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass, field
+from functools import lru_cache
 from typing import Any, Iterable
 
 import numpy as np
@@ -135,6 +136,7 @@ class Receptor:
     sign_odor_ko: str
     evidence_note_ko: str
 
+    @lru_cache(maxsize=8)
     def residue_positions(self) -> list[dict[str, Any]]:
         """Place each model residue's side-chain functional group in the cavity.
 
@@ -584,6 +586,97 @@ def _score_pose(lig: np.ndarray, lig_flags: dict[str, np.ndarray], residues: lis
     }
 
 
+_WINDOW = {
+    "hbond": (2.55, 3.6, 2.95, 0.7),
+    "pi": (3.3, 5.0, 4.1, 0.9),
+    "hydrophobic": (3.2, 4.6, 3.9, 0.8),
+}
+
+
+def _placements(xyz: np.ndarray, centre: np.ndarray,
+                offsets: Iterable[tuple[float, float, float]]) -> tuple[np.ndarray, np.ndarray]:
+    """Every (rotation, offset) placement of one conformer, stacked.
+
+    Returns ``(coords, rotations)`` with ``coords`` of shape
+    ``(n_place, n_atom, 3)`` in the same order the serial search visits them.
+    """
+    rots = np.stack(_ROTATIONS)                      # (288, 3, 3)
+    placed = xyz @ rots.transpose(0, 2, 1)           # (288, n_atom, 3)
+    offsets = list(offsets)
+    # rotation-major order, so ties resolve exactly as the serial loop did
+    coords = np.stack([placed + (centre + np.array(off)) for off in offsets], axis=1)
+    return coords.reshape(-1, xyz.shape[0], 3), rots
+
+
+def _score_batch(coords: np.ndarray, flags: dict[str, np.ndarray],
+                 residue_xyz: np.ndarray, residue_kind: dict[str, np.ndarray],
+                 centre: np.ndarray, radius: float) -> tuple[np.ndarray, dict[str, np.ndarray]]:
+    """Vectorised version of :func:`_score_pose` — every candidate placement at once.
+
+    It returns the same ``raw`` contact score, clash count, burial terms and
+    unsatisfied-polar fraction the serial scorer produces, so the search picks the
+    same pose.  The per-residue breakdown of the winning pose is still built by the
+    serial scorer, which keeps the displayed detail identical.
+    """
+    diff = coords[:, :, None, :] - residue_xyz[None, None, :, :]
+    d = np.sqrt(np.einsum("cajk,cajk->caj", diff, diff))          # (C, atom, residue)
+    n_place = coords.shape[0]
+    n_res = residue_xyz.shape[0]
+
+    best_q = np.full((n_place, n_res), -np.inf)
+    best_kind = np.zeros((n_place, n_res), dtype=np.int8)
+    best_atom = np.zeros((n_place, n_res), dtype=np.int64)
+
+    flag_key = {"hbond": "polar", "pi": "aromatic", "hydrophobic": "hydro"}
+    for code, kind in enumerate(("hbond", "pi", "hydrophobic"), start=1):
+        atoms = np.nonzero(flags[flag_key[kind]])[0]
+        res_idx = np.nonzero(residue_kind[kind])[0]
+        if not len(atoms) or not len(res_idx):
+            continue
+        lo, hi, ideal, width = _WINDOW[kind]
+        sub = d[:, atoms][:, :, res_idx]                           # (C, n_kind_atom, n_kind_res)
+        window = (sub >= lo) & (sub <= hi)
+        q = np.where(window, 1.0 - np.abs(sub - ideal) / width, -np.inf)
+        qs = q.max(axis=1)                                         # (C, n_kind_res)
+        idx = atoms[q.argmax(axis=1)]                              # ligand atom, per (C, res)
+        better = qs > best_q[:, res_idx]
+        best_q[:, res_idx] = np.where(better, qs, best_q[:, res_idx])
+        best_kind[:, res_idx] = np.where(better, np.int8(code), best_kind[:, res_idx])
+        best_atom[:, res_idx] = np.where(better, idx, best_atom[:, res_idx])
+
+    hit = np.isfinite(best_q)
+    n_polar = int(flags["polar"].sum())
+    hb = np.where(hit & (best_kind == 1), best_q, 0.0).sum(axis=1)
+    pi = np.where(hit & (best_kind == 2), best_q, 0.0).sum(axis=1)
+    hyd = np.where(hit & (best_kind == 3), best_q, 0.0).sum(axis=1)
+
+    # distinct hbonded ligand atoms, per placement
+    hb_mask = hit & (best_kind == 1)
+    hb_atoms = np.zeros((n_place, coords.shape[1]), dtype=bool)
+    rows = np.arange(n_place)[:, None]
+    hb_atoms[rows, np.where(hb_mask, best_atom, 0)] = hb_mask
+    unsat = 1.0 - (hb_atoms.sum(axis=1) / n_polar) if n_polar else np.zeros(n_place)
+
+    clashes = (d.min(axis=1) < 2.05).sum(axis=1)
+
+    rel = coords - centre
+    far = np.sqrt(np.einsum("cak,cak->ca", rel, rel))
+    outside = np.maximum(0.0, far - radius * 1.45).sum(axis=1)
+    drift = np.linalg.norm(coords.mean(axis=1) - centre, axis=1)
+
+    raw = 1.15 * hb + 0.55 * hyd + 0.75 * pi
+    return raw, {
+        "contacts": hit.sum(axis=1),
+        "hbonds": (hit & (best_kind == 1)).sum(axis=1),
+        "hydrophobic": (hit & (best_kind == 3)).sum(axis=1),
+        "pi": (hit & (best_kind == 2)).sum(axis=1),
+        "clashes": clashes,
+        "unsat": np.round(unsat, 3),
+        "drift": np.round(drift, 3),
+        "outside": np.round(outside, 3),
+    }
+
+
 def _fit(raw: float, stats: dict, nres: int) -> float:
     """Turn a pose's contact statistics into a 0–100 *schematic* fit value."""
     contact_score = raw / (0.52 * nres)
@@ -607,19 +700,24 @@ def dock(receptor_id: str, molecule_id: str, conformer: dict[str, Any]) -> Pose:
     }
     centre = np.array(rec.pocket_center, dtype=float)
 
-    best = None
     offsets = [(0.0, 0.0, 0.0), (0.0, 0.0, 0.9), (0.0, 0.0, -0.9),
                (0.9, 0.0, 0.0), (-0.9, 0.0, 0.0), (0.0, 0.9, 0.0), (0.0, -0.9, 0.0)]
-    for rot in _ROTATIONS:
-        placed = xyz @ rot.T
-        for off in offsets:
-            t = centre + np.array(off)
-            score, detail, stats = _score_pose(placed + t, flags, residues, centre, rec.pocket_radius)
-            if best is None or score > best[0]:
-                best = (score, rot.copy(), t.copy(), detail, stats)
-
-    assert best is not None
-    score, rot, t, detail, stats = best
+    coords, rots = _placements(xyz, centre, offsets)
+    residue_xyz = np.array([r["pos"] for r in residues], dtype=float)
+    residue_kind = {
+        "hbond": np.array([bool(r["polar"]) for r in residues]),
+        "pi": np.array([bool(r["aromatic"]) for r in residues]),
+        "hydrophobic": np.array([bool(r["hydrophobic"]) for r in residues]),
+    }
+    raw_scores, _stats = _score_batch(coords, flags, residue_xyz, residue_kind,
+                                      centre, rec.pocket_radius)
+    # first maximum wins, exactly as the serial `score > best[0]` comparison did
+    winner = int(np.argmax(raw_scores))
+    n_off = len(offsets)
+    rot = rots[winner // n_off]
+    t = centre + np.array(offsets[winner % n_off])
+    # rebuild the per-residue detail of the winning pose with the serial scorer
+    score, detail, stats = _score_pose(coords[winner], flags, residues, centre, rec.pocket_radius)
     fit = _fit(score, stats, len(residues))
     chem, bits = chemotype_affinity(receptor_id, conformer.get("props", {}))
     detail.sort(key=lambda d: {"hbond": 0, "pi": 1, "hydrophobic": 2}[d["kind"]])

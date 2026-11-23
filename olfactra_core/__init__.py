@@ -16,15 +16,21 @@ meant to be checked by, real perfumery and GC-MS validation.
 """
 from __future__ import annotations
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 __license__ = "MIT"
 __copyright__ = "Copyright (c) 2026 FEI · HEL Lab, Gyeongsang National University"
 
-from . import atlas, docking, exporter, molecule, pyrfume, recommender, structure3d, studio  # noqa: E402
+from . import (  # noqa: E402
+    atlas, compare, descriptors, docking, exporter, molecule, provenance, pyrfume,
+    recommender, structure3d, studio,
+)
 
 __all__ = [
     "__version__",
     "atlas",
+    "compare",
+    "descriptors",
+    "provenance",
     "docking",
     "molecule",
     "pyrfume",

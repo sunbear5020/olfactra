@@ -17,6 +17,8 @@ import math
 from dataclasses import dataclass, field
 from typing import Iterable, Mapping, Sequence
 
+from . import descriptors
+
 FAMILIES: tuple[str, ...] = (
     "citrus", "green", "floral", "fruity", "sweet", "spicy",
     "woody", "resinous", "earthy", "camphor", "musky", "smoky", "powdery",
@@ -65,8 +67,28 @@ class Molecule:
 
     # -- derived ---------------------------------------------------------
     @property
+    def logp(self) -> float:
+        """Calculated octanol–water partition coefficient (Crippen contributions).
+
+        An estimate from a contribution model, not an experimental value — see
+        :mod:`olfactra_core.descriptors` and the provenance registry.
+        """
+        return descriptors.value(self.id, "logp")
+
+    @property
+    def tpsa(self) -> float:
+        """Topological polar surface area (Å², Ertl fragments) — a derived estimate."""
+        return descriptors.value(self.id, "tpsa")
+
+    @property
     def volatility(self) -> float:
-        """0..1 volatility index used for the note/evaporation axis (higher = faster)."""
+        """0..1 volatility index used for the note/evaporation axis (higher = faster).
+
+        Heuristic: a note-class base (top .92, middle .60, base .25) scaled by the
+        molecular weight (``170 / MW`` clamped to 0.55–1.20).  It is **not** a
+        vapour-pressure measurement and no measured vapour pressure is bundled;
+        it only orders materials for the map and the note axis.
+        """
         base = {"top": 0.92, "middle": 0.6, "base": 0.25}[self.note]
         # heavier molecules evaporate more slowly within a note class
         weight_factor = max(0.55, min(1.2, 170.0 / max(self.molecular_weight, 1.0)))
@@ -94,6 +116,8 @@ class Molecule:
             "cas": self.cas,
             "formula": self.formula,
             "molecular_weight": self.molecular_weight,
+            "logp": self.logp,
+            "tpsa": self.tpsa,
             "smiles": self.smiles,
             "pubchem_cid": self.pubchem_cid,
             "functional_group": self.functional_group,
